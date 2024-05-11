@@ -14,7 +14,7 @@ public class History {
 	
 	public String toString() {
 		return new StringJoiner(", ", "OrderID: ", "")
-				.add(Integer.toBinaryString(orderID))
+				.add(Integer.toString(orderID))
 				.add("OrderDate: " + orderDate)
 				.toString();
 	}

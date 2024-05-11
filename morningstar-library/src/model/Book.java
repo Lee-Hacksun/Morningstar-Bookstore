@@ -32,6 +32,8 @@ public class Book {
 				.add("Author: " + author)
 				.add("Publisher: " + publisher)
 				.add("ReleaseDate: " + releaseDate)
+				.add("Description: " + description)
+				.add("BookImageURL: " + bookImageURL)
 				.add("Page: " + page)
 				.toString();
 	}
