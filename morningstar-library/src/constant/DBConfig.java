@@ -5,5 +5,5 @@ public class DBConfig {
 	public static final String URL = "jdbc:mysql://localhost:3306/morningstar_bookstore";
 	public static final String ADMIN_ID = "root";
 	public static final String ADMIN_PW = "onlyroot";
-	public static final int CONNECT_RETRY_COUNT = 5;
+	public static final int MAXIMUM_POOL_SIZE = 10;
 }

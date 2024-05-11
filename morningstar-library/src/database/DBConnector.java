@@ -1,52 +1,27 @@
 package database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 import constant.DBConfig;
 
 public class DBConnector {
-	private static Connection con = null;
+	private static HikariDataSource dataSource;
 	
-	static {
-		try {
-			Class.forName(DBConfig.DRIVER);
-		}
-		catch (java.lang.ClassNotFoundException ex){
-			System.err.println("Driver load erro in DBConnector class" + ex.getMessage());
-		}
-		connectToDB();
-	}
-	
-	public static Connection getConnection() {
-		try {
-			if (con == null | con.isClosed()) {
-				connectToDB();
-			}
-		} catch (SQLException ex) {
-			System.err.println("Driver load erro in DBConnector class" + ex.getMessage());
-		}
+	static {		
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setJdbcUrl(DBConfig.URL);
+		hikariConfig.setUsername(DBConfig.ADMIN_ID);
+		hikariConfig.setPassword(DBConfig.ADMIN_PW);
+		hikariConfig.setMaximumPoolSize(DBConfig.MAXIMUM_POOL_SIZE);
 		
-		return con;
+		dataSource = new HikariDataSource(hikariConfig);
 	}
 	
-	private static void connectToDB() {
-		for(int i = 0; i < DBConfig.CONNECT_RETRY_COUNT; i++)
-			if (tryConnect()) {
-				break;
-			}
-	}
-	
-	private static Boolean tryConnect() {
-		try {
-			con = DriverManager.getConnection(DBConfig.URL, DBConfig.ADMIN_ID, DBConfig.ADMIN_PW);
-			return true;
-		}
-		catch (SQLException ex) {
-			System.err.println("Database connection erro in DBConnector class" + ex.getMessage());
-		}
-		
-		return false;
+	public static Connection getConnection() throws SQLException {
+		return dataSource.getConnection();
 	}
 }
