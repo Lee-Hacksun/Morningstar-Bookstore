@@ -8,5 +8,14 @@
 package constant;
 
 public class BookAttribute {
-
+	public static final String TABLE_NAME = "Book";
+	public static final String ISBN = "ISBN";
+	public static final String BOOK_NAME = "bookName";
+	public static final String AUTHOR = "author";
+	public static final String PUBLISHER = "publisher";
+	public static final String RELEASE_DATE = "releaseDate";
+	public static final String DESCRIPTION = "description";
+	public static final String PAGE = "page";
+	public static final String BOOK_IMG_URL = "bookImg";
+	public static final String CATEGORY = "category";
 }

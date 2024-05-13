@@ -3,11 +3,15 @@
 package control;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import constant.WebConfig;
+import service.BookService;
 
 /**
  * Servlet implementation class ViewBookSublet
@@ -21,14 +25,17 @@ public class ViewBookSublet extends HttpServlet {
      */
     public ViewBookSublet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		BookService bookService = new BookService();
+		bookService.loadBook(WebConfig.MAIN_PAGE_BOOK_COUNT);
+		
+		request.setAttribute("books", bookService.getBooks());
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 }
