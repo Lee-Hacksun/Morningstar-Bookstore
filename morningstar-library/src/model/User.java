@@ -4,16 +4,16 @@ import java.util.StringJoiner;
 
 public class User {
 
-	private String customerID;
-	private String customerPW;
+	private String userID;
+	private String userPW;
 	private String name;
 	private String deliveryAddress;
 	private String eMailAddress;
 	private Boolean managerMode;
 	
-	public User(String customerID, String customerPW, String name, String deliveryAddress, String eMailAddress, Boolean managerMode) {
-		this.customerID = customerID;
-		this.customerPW = customerPW;
+	public User(String userID, String customerPW, String name, String deliveryAddress, String eMailAddress, Boolean managerMode) {
+		this.userID = userID;
+		this.userPW = customerPW;
 		this.name = name;
 		this.deliveryAddress = deliveryAddress;
 		this.eMailAddress = eMailAddress;
@@ -23,9 +23,9 @@ public class User {
 	public String toString() {
 		String mode = managerMode ? "관리자" : "고객";
 		
-		return new StringJoiner(", ", "CustomerID: ", "")
-				.add(customerID)
-				.add("CustomerPW: " + customerPW)
+		return new StringJoiner(", ", "userID: ", "")
+				.add(userID)
+				.add("CustomerPW: " + userPW)
 				.add("Name: " + name)
 				.add("DeliveryAddress: " + deliveryAddress)
 				.add("E-MailAddress: "+ eMailAddress)
@@ -33,12 +33,12 @@ public class User {
 				.toString();
 	}
 	
-	public String getCustomerID() {
-		return customerID;
+	public String getUserID() {
+		return userID;
 	}
 	
-	public String getCustomerPW() {
-		return customerPW;
+	public String getUserPW() {
+		return userPW;
 	}
 	
 	public String getName() {

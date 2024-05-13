@@ -17,13 +17,13 @@ import service.BookService;
  * Servlet implementation class ViewBookSublet
  */
 @WebServlet("/ViewBook")
-public class ViewBookSublet extends HttpServlet {
+public class ViewBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewBookSublet() {
+    public ViewBookServlet() {
         super();
     }
 

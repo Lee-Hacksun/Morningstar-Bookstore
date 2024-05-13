@@ -4,26 +4,26 @@ import java.util.StringJoiner;
 
 public class Cart {
 
-	private String customerID;
+	private String userID;
 	private int totalBookCount;
 	private int totalAmount;
 	
-	public Cart(String customerID, int totalBookCount, int totalAmount) {
-		this.customerID = customerID;
+	public Cart(String userID, int totalBookCount, int totalAmount) {
+		this.userID = userID;
 		this.totalBookCount = totalBookCount;
 		this.totalAmount = totalAmount;
 	}
 	
 	public String toString() {
-		return new StringJoiner(", ", "CustomerID: ", "")
-				.add(customerID)
+		return new StringJoiner(", ", "userID: ", "")
+				.add(userID)
 				.add("TotalBookCount: " + totalBookCount)
 				.add("TotalAmount: " + totalAmount)
 				.toString();
 	}
 	
-	public String getCustomerID() {
-		return customerID;
+	public String getuserID() {
+		return userID;
 	}
 	
 	public int getTotalBookCount() {
@@ -34,7 +34,3 @@ public class Cart {
 		return totalAmount;
 	}
 }
-
-//customerID varchar(10),
-//totalBookCount int,
-//totalAmount int,
