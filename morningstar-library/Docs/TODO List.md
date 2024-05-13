@@ -5,7 +5,7 @@
 ### 데이터베이스
 - [ ] 데이터베이스 테이블 추가
 - [ ] OrderService 작성
-- [ ] RegisterService 작성 
+- [ ] ManagerOrderService 작성
 
 ### 인터페이스
 - [ ] 고객 페이지
@@ -13,8 +13,14 @@
   - [ ] 도서 상세정보 페이지
 - [ ] 관리자 페이지
   - [ ] 도서 상세정보 관리 페이지
+- [ ] RegistUserServlet 적용 (회원가입 기능)
+- [ ] ViewBookSuvlet 적용 (메인페이지 책 정보 게시)
 
 ### 기능
+- [ ] 유저 탈퇴 기능
+- [ ] 도서 구매 기능
+- [ ] 도서 발주 기능
+- [ ] 로그인 기능
 
 ### 기타
 
@@ -24,10 +30,14 @@
 - [x] 데이터 베이스 연결
 - [ ] 데이터베이스 상수 클래스 작성
   - [x] DBConfig.java
+  - [x] UserAttribute.java
   - [x] BookAttribute.java
   - [x] WebConfig.java
 - [x] 모델 클래스 작성
-- [ ] ViewBookSublet 작성 
+- [x] RegisterService 작성 
+- [x] RegistUserServlet 작성
+- [x] BookService 작성
+- [x] ViewBookSuvlet 작성 
       
 ### 이승은
 - [ ] 고객 페이지
@@ -40,6 +50,7 @@
   - [x] 도서 발주 페이지
   - [x] 도서 조회 페이지
   - [x] 회원 관리 페이지
+  
 ### 전태준
 - [ ] << 공백에 x넣어서 체크하기
 
