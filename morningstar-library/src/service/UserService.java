@@ -9,12 +9,12 @@ import constant.UserAttribute;
 import database.DBConnector;
 import model.User;
 
-public class RegsiterService {
+public class UserService {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	public RegsiterService() {
+	public UserService() {
 	}
 	
 	public void addUser(User user) {
