@@ -24,6 +24,9 @@
 ### 이학선
 - [x] 데이터 베이스 연결
 - [ ] 데이터베이스 상수 클래스 작성
+  - [x] DBConfig.java
+  - [x] BookAttribute.java
+  - [x] WebConfig.java
 - [x] 모델 클래스 작성
       
 ### 이승은
