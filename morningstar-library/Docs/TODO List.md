@@ -21,7 +21,9 @@
 - [ ] 도서 구매 기능
 - [ ] 도서 발주 기능
 - [ ] 로그인 기능
-
+  - [ ] LoginServlet 작성
+    - [ ] 로그인 성공시 페이지 전환
+    - [ ] 로그인 실패시 페이지 전환
 ### 기타
 
 ## 개인 과제
@@ -38,6 +40,9 @@
 - [x] RegistUserServlet 작성
 - [x] BookService 작성
 - [x] ViewBookSuvlet 작성 
+- [ ] 로그인 기능
+  - [ ] LoginServlet 작성  
+    - [x] 로그인 성공 여부 
       
 ### 이승은
 - [ ] 고객 페이지

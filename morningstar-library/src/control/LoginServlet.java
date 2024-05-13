@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 		boolean isSuccess = userService.loginUser(userID, userPW);
 		
 		// TODO 로그인 성공과 실패에 대한 추가 로직 작성
+		// 세션을 이용해서 로그인 정보를 저장하는 것을 고려해 볼 것 
 	}
 
 }
