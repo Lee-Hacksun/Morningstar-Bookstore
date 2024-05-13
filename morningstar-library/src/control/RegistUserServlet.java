@@ -14,13 +14,13 @@ import service.RegsiterService;
  * Servlet implementation class RegistUser
  */
 @WebServlet("/RegistUser")
-public class RegistUser extends HttpServlet {
+public class RegistUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistUser() {
+    public RegistUserServlet() {
         super();
     }
 
