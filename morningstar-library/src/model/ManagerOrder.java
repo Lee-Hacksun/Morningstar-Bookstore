@@ -6,13 +6,13 @@ import java.util.StringJoiner;
 public class ManagerOrder {
 
 	private int managerOrderID;
-	private String customerID;
+	private String userID;
 	private String orderDate;
 	private String[] isbns;
 	
-	public ManagerOrder(int managerOrderID, String customerID, String orderDate, String[] isbns) {
+	public ManagerOrder(int managerOrderID, String userID, String orderDate, String[] isbns) {
 		this.managerOrderID = managerOrderID;
-		this.customerID = customerID;
+		this.userID = userID;
 		this.orderDate = orderDate;
 		this.isbns = Arrays.copyOf(isbns, isbns.length);
 	}
@@ -27,7 +27,7 @@ public class ManagerOrder {
 		
 		return new StringJoiner(", ", "ManagerOrderID: ", "")
 				.add(Integer.toString(managerOrderID))
-				.add("CustomerID: " + customerID)
+				.add("userID: " + userID)
 				.add("OrderDate: " + orderDate)
 				.add("ISBNS: " + sb.toString())
 				.toString();
@@ -37,8 +37,8 @@ public class ManagerOrder {
 		return managerOrderID;
 	}
 	
-	public String getCustomerID() {
-		return customerID;
+	public String getuserID() {
+		return userID;
 	}
 	
 	public String getOrderDate() {

@@ -6,16 +6,16 @@ import java.util.StringJoiner;
 public class Order {
 
 	private int orderID;
-	private String customerID;
+	private String userID;
 	private String orderDate;
 	private String deliveryAddress;
 	private int totalAmount;
 	private int totalBookCount;
 	private String[] isbns;
 	
-	public Order(int orderID, String customerID, String orderDate, String deliveryAddress, int totalAmount, int totalBookCount, String[] isbns) {
+	public Order(int orderID, String userID, String orderDate, String deliveryAddress, int totalAmount, int totalBookCount, String[] isbns) {
 		this.orderID = orderID;
-		this.customerID = customerID;
+		this.userID = userID;
 		this.orderDate = orderDate;
 		this.deliveryAddress = deliveryAddress;
 		this.totalAmount = totalAmount;
@@ -33,7 +33,7 @@ public class Order {
 		
 		return new StringJoiner(", ", "OrderID: ", "")
 				.add(Integer.toString(orderID))
-				.add("CustomerID: " + customerID)
+				.add("userID: " + userID)
 				.add("OrderDate: " + orderDate)
 				.add("DeliveryAddress: " + deliveryAddress)
 				.add("TotalAmount: " + Integer.toString(totalAmount))
@@ -46,8 +46,8 @@ public class Order {
 		return orderID;
 	}
 	
-	public String getCustomerID() {
-		return customerID;
+	public String getuserID() {
+		return userID;
 	}
 	
 	public String getOrderDate() {
