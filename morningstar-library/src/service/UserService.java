@@ -9,12 +9,12 @@ import constant.UserAttribute;
 import database.DBConnector;
 import model.User;
 
-public class RegsiterService {
+public class UserService {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	public RegsiterService() {
+	public UserService() {
 	}
 	
 	public void addUser(User user) {
@@ -37,5 +37,35 @@ public class RegsiterService {
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 		}
+	}
+	
+	public boolean loginUser(String userID, String userPW) {
+		try {
+			con = DBConnector.getConnection();
+			pstmt = con.prepareStatement("SELECT COUNT(userID) as success FROM " + UserAttribute.TABLE_NAME 
+					+ " where " + UserAttribute.USER_ID + "=? and " + UserAttribute.USER_PW + "=?;");
+			
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userPW);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				int success = rs.getInt("success");
+				if (success == 1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		} catch (SQLException ex) {
+			System.err.println("Database error in RegisterService" + ex.getMessage());
+		} finally {
+			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+		}
+		return false;
 	}
 }

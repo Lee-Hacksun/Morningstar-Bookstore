@@ -7,45 +7,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.User;
 import service.UserService;
 
 /**
- * Servlet implementation class RegistUser
+ * Servlet implementation class Login
  */
-@WebServlet("/RegistUser")
-public class RegistUserServlet extends HttpServlet {
+@WebServlet("/Login")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistUserServlet() {
+    public LoginServlet() {
         super();
     }
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
-    //public User(String userID, String customerPW, String name, String deliveryAddress, String eMailAddress, Boolean managerMode) {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		String userID = request.getParameter("userID");
 		String userPW = request.getParameter("userPW");
-		String name = request.getParameter("name");
-		String deliveryAddress = request.getParameter("deliveryAddress");
-		String eMailAddress = request.getParameter("eMailAddress");
 		
-		UserService registerService = new UserService();
-		registerService.addUser(new User(
-				userID
-				, userPW
-				, name
-				, deliveryAddress
-				, eMailAddress
-				, false));
+		UserService userService = new UserService();
+		boolean isSuccess = userService.loginUser(userID, userPW);
+		
+		// TODO 로그인 성공과 실패에 대한 추가 로직 작성
+		// 세션을 이용해서 로그인 정보를 저장하는 것을 고려해 볼 것 
 	}
 
 }
