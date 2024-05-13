@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
-import service.RegsiterService;
+import service.UserService;
 
 /**
  * Servlet implementation class RegistUser
@@ -38,7 +38,7 @@ public class RegistUserServlet extends HttpServlet {
 		String deliveryAddress = request.getParameter("deliveryAddress");
 		String eMailAddress = request.getParameter("eMailAddress");
 		
-		RegsiterService registerService = new RegsiterService();
+		UserService registerService = new UserService();
 		registerService.addUser(new User(
 				userID
 				, userPW
