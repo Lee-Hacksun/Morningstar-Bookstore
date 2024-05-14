@@ -47,6 +47,7 @@
   - [x] UserAttribute.java
   - [x] BookAttribute.java
   - [x] WebConfig.java
+- [x] CategoryFlags 작성
 - [x] 모델 클래스 작성
 - [x] RegisterService 작성 
 - [x] RegistUserServlet 작성

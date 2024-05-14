@@ -53,6 +53,7 @@ public class BookService {
 			}
 		} catch (SQLException ex) {
 			System.err.println("Database error in BookService" + ex.getMessage()); 
+			
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
