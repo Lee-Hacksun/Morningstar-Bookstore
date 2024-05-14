@@ -9,9 +9,9 @@ import constant.InventoryAttribute;
 import database.DBConnector;
 
 public class InventoryService {
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	private Connection con = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 	
 	private int price;
 	

@@ -13,9 +13,9 @@ import model.Cart;
 import model.Pair;
 
 public class CartService {
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null; 
+	private Connection con = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null; 
 	
 	public boolean addItem(String userID, String ISBN, int bookCount) {
 		try {
