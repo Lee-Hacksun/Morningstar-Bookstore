@@ -1,6 +1,7 @@
 package model;
 
 import java.util.StringJoiner;
+import java.util.Vector;
 
 public class Book {
 	
@@ -12,9 +13,9 @@ public class Book {
 	private String description;
 	private String bookImageURL;
 	private int page;
-	private int category;
+	private CategoryFlags category;
 	
-	public Book(String isbn, String bookName, String author, String publisher, String releaseDate, String description, String bookImageURL, int page, int category) {
+	public Book(String isbn, String bookName, String author, String publisher, String releaseDate, String description, String bookImageURL, int page, Vector<String> categories) {
 		this.isbn = isbn;
 		this.bookName = bookName;
 		this.author = author;
@@ -23,7 +24,19 @@ public class Book {
 		this.description = description;
 		this.bookImageURL = bookImageURL;
 		this.page  = page;
-		this.category = category;
+		this.category = new CategoryFlags(categories);
+	}
+	
+	public Book(String isbn, String bookName, String author, String publisher, String releaseDate, String description, String bookImageURL, int page, int code) {
+		this.isbn = isbn;
+		this.bookName = bookName;
+		this.author = author;
+		this.publisher = publisher;
+		this.releaseDate = releaseDate;
+		this.description = description;
+		this.bookImageURL = bookImageURL;
+		this.page  = page;
+		this.category = new CategoryFlags(code);
 	}
 	
 	public String toString() {
@@ -35,6 +48,7 @@ public class Book {
 				.add("Description: " + description)
 				.add("BookImageURL: " + bookImageURL)
 				.add("Page: " + page)
+				.add("Category: " + category.toString())
 				.toString();
 	}
 	
@@ -70,7 +84,7 @@ public class Book {
 		return page;
 	}
 	
-	public int getCategory() {
-		return category;
+	public Vector<String> getCategory() {
+		return category.getCategories();
 	}
 }
