@@ -39,6 +39,18 @@ public class Book {
 		this.category = new CategoryFlags(code);
 	}
 	
+	public Book(Book other) {
+		this.isbn = other.isbn;
+		this.bookName = other.bookName;
+		this.author = other.author;
+		this.publisher = other.publisher;
+		this.releaseDate = other.releaseDate;
+		this.description = other.description;
+		this.bookImageURL = other.bookImageURL;
+		this.page  = other.page;
+		this.category = new CategoryFlags(other.category);
+	}
+	
 	public String toString() {
 		return new StringJoiner(", ", "BookName: ", "")
 				.add(bookName)
