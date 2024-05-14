@@ -31,12 +31,38 @@ public class UserService {
 			
 			pstmt.execute();
 		} catch (SQLException ex) {
-			System.err.println("Database error in RegisterService" + ex.getMessage());
+			System.err.println("Database error in UserService" + ex.getMessage());
+			
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 		}
+	}
+	
+	public boolean deleteUser(String userID) {
+		try {
+			con = DBConnector.getConnection();
+			pstmt = con.prepareStatement(String.join(" ", "DELETE FROM", UserAttribute.TABLE_NAME, "WHERE", UserAttribute.USER_ID, "=?"));
+			
+			pstmt.setString(1, userID);
+			
+			int isSucces = pstmt.executeUpdate();
+			if (isSucces > 0) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (SQLException ex) {
+			System.err.println("Database error in UserService" + ex.getMessage());
+			
+		} finally {
+			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+		}
+		return false;
 	}
 	
 	public boolean loginUser(String userID, String userPW) {
@@ -60,7 +86,7 @@ public class UserService {
 				}
 			}
 		} catch (SQLException ex) {
-			System.err.println("Database error in RegisterService" + ex.getMessage());
+			System.err.println("Database error in UserService" + ex.getMessage());
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
