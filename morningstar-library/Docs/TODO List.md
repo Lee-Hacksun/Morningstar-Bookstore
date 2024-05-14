@@ -6,12 +6,8 @@
 - [ ] 데이터베이스 테이블 추가
 - [ ] OrderService 작성
 - [ ] ManagerOrderService 작성
-- [ ] 데이터베이스 상수 클래스 작성
-  - [ ] 카트
-  - [ ] 히스토리
-  - [ ] 주문
-  - [ ] 발주
-  - [ ] 리뷰
+
+
 
 ### 인터페이스
 - [ ] 고객 페이지
@@ -76,5 +72,9 @@
 - [x] << 공백에 x넣어서 체크하기
 
 ### 정민구
-- [x] << 공백에 x넣어서 체크하기
-
+- [x] 데이터베이스 상수 클래스 작성
+- [x] 발주 ManagerOrderAttribute.java
+- [x] 히스토리 HistoryAttribute.java
+- [x] 카트 CartAttribute.java
+- [x] 주문 OrderAttribute.java
+- [x] 리뷰 ReviewAttribute.java
