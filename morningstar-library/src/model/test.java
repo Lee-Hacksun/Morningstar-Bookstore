@@ -6,10 +6,10 @@ public class test {
 
 	public static void main(String[] args) {
 		Vector<String> cats = new Vector<String>();
-		cats.add(CategoryFlag.FLAG_VALUES[0]);
-		cats.add(CategoryFlag.FLAG_VALUES[1]);
+		cats.add(CategoryFlags.FLAG_VALUES[0]);
+		cats.add(CategoryFlags.FLAG_VALUES[1]);
 		
-		CategoryFlag cat = new CategoryFlag(cats);
+		CategoryFlags cat = new CategoryFlags(cats);
 		
 		System.out.println(cat.toString());
 	}
