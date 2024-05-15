@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,61 +57,54 @@
             </div>
         </header>
     </div>
-    <div id="content" class="mb-auto p-4 h-auto pt-20 pb-40">
-        <section class="bg-white py-3 sm:py-5">
-            <div class="mx-auto max-w-7xl px-4 lg:px-12">
-                <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                    <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 border-b dark:border-gray-700">
-                        <div class="w-full flex items-center space-x-3">
-                            <h5 class="text-2xl font-semibold">회원 관리</h5>
+
+    <section class="bg-white">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        발주
+                    </h1>
+                    <form class="space-y-4 md:space-y-6" action="#">
+                        <div>
+                            <label for="name"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이름</label>
+                            <input type="text" name="name" id="name"
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                   placeholder="이름" required="">
                         </div>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">
-                                    <span class="sr-only">Expand/Collapse Row</span>
-                                </th>
-                                <th scope="col" class="px-4 py-3 min-w-20">이름</th>
-                                <th scope="col" class="px-4 py-3 min-w-[10rem]">아이디</th>
-                            </tr>
-                            </thead>
-                            <tbody data-accordion="table-column">
-                            <!-- 회원 정보 -->
-                            <tr class="border-b dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition" id="table-column-header-0" data-accordion-target="#table-column-body-0" aria-expanded="false" aria-controls="table-column-body-0">
-                                <td class="p-3 w-4">
-                                    <svg data-accordion-icon="" class="w-6 h-6 shrink-0" fill="currentColor" viewbox="0 0 20 20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </td>
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
-                                    홍길동
-                                </th>
-                                <td class="px-4 py-3">ghdrlfehd</td>
-                            </tr>
-                            <tr class="hidden flex-1 overflow-x-auto w-full" id="table-column-body-0" aria-labelledby="table-column-header-0">
-                                <td class="p-4 border-b" colspan="9">
-                                    <!-- 상세 정보 -->
-                                    <div class="px-10">
-                                        <p class="mb-2 text-base leading-none font-medium text-gray-900">PW : ghdrlfehd11</p>
-                                        <p class="mb-2 text-base leading-none font-medium text-gray-900">주소 : 서울특별시 종로구 청와대로 1 </p>
-                                    </div>
-                                    <!-- 탈퇴 버튼 -->
-                                    <div class="flex items-center justify-end space-x-3 mt-4">
-                                        <button type="button" class="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                            탈퇴
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        <div>
+                            <label for="author"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">저자</label>
+                            <input type="text" name="author" id="author"
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                   placeholder="저자" required="">
+                        </div>
+                        <div>
+                            <label for="amount"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">수량</label>
+                            <input type="number" name="amount" id="amount"
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                   placeholder="1" required="">
+                        </div>
+                        <div>
+                            <label for="date"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">발주일</label>
+                            <input type="date" name="date" id="date"
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                   placeholder="" required="">
+                        </div>
+                        <div class="text-right">
+                            <button type="submit"
+                                    class="w-auto text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                발주
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
     <div id="footer">
         <footer class="w-full mx-auto border-t border-slate-900/5 bg-white">
             <div class="flex flex-row justify-between mx-auto max-w-[1300px] px-10">
@@ -130,5 +125,6 @@
             </div>
         </footer>
     </div>
+</div>
 </body>
 </html>
