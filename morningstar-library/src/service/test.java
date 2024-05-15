@@ -6,9 +6,9 @@ public class test {
 
 	public static void main(String[] args) {
 		CartService cartService = new CartService();
-		Cart cart = cartService.loadCart("hanshin");
+		boolean s = cartService.addItem("com", "9788971904398", 5);
 		
-		System.out.println(cart.toString());
+		System.out.println("add Item: " + s);
 
 	}
 
