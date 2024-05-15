@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,7 +19,7 @@
                     <!-- logo -->
                     <div class="flex items-center md:gap-x-12">
                         <a aria-label="Home" href="/">
-                            <img class="w-40 mr-2" src="../../img/morningstarlogo.png" alt="logo">
+                            <img class="w-40 mr-2" src="../assets/icons/morningstarlogo.png" alt="logo">
                         </a>
                     </div>
                     <!-- 로그인 -->
