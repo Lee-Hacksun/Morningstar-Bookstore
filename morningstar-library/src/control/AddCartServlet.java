@@ -1,25 +1,28 @@
 package control;
 
 import java.io.IOException;
+import java.util.Vector;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.UserService;
+import model.Book;
+import model.Pair;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class AddCartServlet
  */
-@WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AddCart")
+public class AddCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public AddCartServlet() {
         super();
     }
 
@@ -30,13 +33,11 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String userID = request.getParameter("userID");
-		String userPW = request.getParameter("userPW");
+		String ISBN = request.getParameter("ISBN");
+		int bookCount = Integer.parseInt(request.getParameter("bookCount"));
 		
-		UserService userService = new UserService();
-		boolean isSuccess = userService.loginUser(userID, userPW);
 		
-		// TODO 로그인 성공과 실패에 대한 추가 로직 작성
-		// 세션을 이용해서 로그인 정보를 저장하는 것을 고려해 볼 것 
+		
 	}
 
 }

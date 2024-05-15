@@ -17,7 +17,7 @@ public class UserService {
 	public UserService() {
 	}
 	
-	public void addUser(User user) {
+	public boolean addUser(User user) {
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement("INSERT INTO " + UserAttribute.TABLE_NAME + " values (?, ?, ?, ?, ?, ?);");
@@ -29,7 +29,12 @@ public class UserService {
 			pstmt.setString(5, user.getEMailAddress());
 			pstmt.setString(6, user.getDeliveryAddress());
 			
-			pstmt.execute();
+			int isSucces = pstmt.executeUpdate();
+			if (isSucces > 0) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (SQLException ex) {
 			System.err.println("Database error in UserService" + ex.getMessage());
 			
@@ -38,6 +43,7 @@ public class UserService {
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 		}
+		return false;
 	}
 	
 	public boolean deleteUser(String userID) {

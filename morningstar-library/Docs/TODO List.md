@@ -25,7 +25,6 @@
 
 ### 기능
 - [ ] 도서 구매 기능
-- [ ] 장바구니 기능
 - [ ] 도서 발주 기능
 - [ ] 로그인 기능
   - [ ] LoginServlet 작성
@@ -52,10 +51,15 @@
 - [x] RegistUserServlet 작성
 - [x] BookService 작성
 - [x] ViewBookSuvlet 작성 
+- [x] InventoryService 작성
 - [ ] 로그인 기능
   - [ ] LoginServlet 작성  
     - [x] 로그인 성공 여부 
-- [x] 유저 탈퇴 기능     
+- [x] 유저 탈퇴 기능
+- [x] 장바구니 기능     
+  - [x] CartService 작성
+    - [x] 장바구니에 요소 추가
+    - [x] 장바구니 로드  
 
 ### 이승은
 - [ ] 고객 페이지
