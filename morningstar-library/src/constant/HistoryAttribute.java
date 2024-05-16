@@ -9,4 +9,8 @@ package constant;
 
 public class HistoryAttribute {
 
+    public static final String ORDER_HISTORY_TABLE_NAME = "orderHistory";
+    public static final String ORDER_HISTORY_ORDER_ID = "orderID";
+    public static final String ORDER_HISTORY_ORDER_DATE = "orderDate";
+
 }

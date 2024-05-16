@@ -7,5 +7,9 @@
 package constant;
 
 public class ReviewAttribute {
-
+    public static final String TABLE_NAME = "review";
+    public static final String ISBN = "ISBN";
+    public static final String USER_ID = "customerID";
+    public static final String CONTENT = "content";
+    public static final String RATING = "rating";
 }
