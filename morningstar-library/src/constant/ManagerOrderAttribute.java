@@ -6,13 +6,13 @@
 package constant;
 
 public class ManagerOrderAttribute {
-    // `managerOrder` 테이블 속성
+
     public static final String MANAGER_ORDER_TABLE_NAME = "managerOrder";
     public static final String CUSTOMER_ID = "customerID";
     public static final String MANAGER_ORDER_ID = "managerOrderID";
     public static final String ORDER_DATE = "orderDate";
 
-    // `bookOfManagerOrder` 테이블 속성
+
     public static final String BOOK_OF_MANAGER_ORDER_TABLE_NAME = "bookOfManagerOrder";
     public static final String BOOK_OF_MANAGER_ORDER_ID = "managerOrderID";
     public static final String ISBN = "ISBN";

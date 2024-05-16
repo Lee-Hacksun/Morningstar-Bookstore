@@ -9,17 +9,11 @@
 package constant;
 
 public class OrderAttribute {
-    // `sale` 테이블 속성
+
     public static final String SALE_TABLE_NAME = "sale";
     public static final String ORDER_ID = "orderID";
     public static final String CUSTOMER_ID = "customerID";
     public static final String ORDER_DATE = "orderDate";
     public static final String DELIVERY_ADDRESS = "deliveryAddress";
     public static final String TOTAL_AMOUNT = "totalAmount";
-
-    // `orderList` 테이블 속성
-    public static final String ORDER_LIST_TABLE_NAME = "orderList";
-    public static final String ORDER_LIST_ORDER_ID = "orderID";
-    public static final String ORDER_LIST_ISBN = "ISBN";
-    public static final String ORDER_LIST_COUNT = "count";
 }
