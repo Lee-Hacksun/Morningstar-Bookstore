@@ -13,11 +13,4 @@ public class HistoryAttribute {
     public static final String ORDER_HISTORY_ORDER_ID = "orderID";
     public static final String ORDER_HISTORY_ORDER_DATE = "orderDate";
 
-
-    public static final String ORDER_TABLE_NAME = "sale";
-    public static final String ORDER_ORDER_ID = "orderID";
-    public static final String ORDER_CUSTOMER_ID = "customerID";
-    public static final String ORDER_ORDER_DATE = "orderDate";
-    public static final String ORDER_DELIVERY_ADDRESS = "deliveryAddress";
-    public static final String ORDER_TOTAL_AMOUNT = "totalAmount";
 }
