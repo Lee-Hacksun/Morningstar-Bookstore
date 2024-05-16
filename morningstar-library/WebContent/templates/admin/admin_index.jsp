@@ -43,8 +43,8 @@
                                 </svg>
                                 <span class="sr-only">Toggle sidebar</span>
                             </button>
-                            <a href="/" class="flex items-center justify-between mr-4">
-                                <img class="w-10 mr-3" src="../../img/morningstarlogo.png" alt="logo">
+                            <a href="/admin/admin_index.jsp" class="flex items-center justify-between mr-4">
+                                <img class="w-10 mr-3" src="../assets/icons/morningstarlogo.png" alt="logo">
                                 <span class="self-center text-2xl font-semibold whitespace-nowrap">ADMINISTRATOR</span>
                             </a>
                         </div>
@@ -57,25 +57,26 @@
             </div>
         </header>
     </div>
-    <div id="content" class="content-center">
-        <div class="flex flex-row gap-20 justify-center max-w-7xl mx-auto p-4">
-            <div>
-                <img src="https://icons.veryicon.com/png/o/business/store-marketing-management-icon/goods-purchase-order.png"
-                class="w-[300px] h-[300px]" alt="발주">
-                <p class="pt-10 text-slate-700 text-center font-bold text-4xl">발주</p>
-            </div>
-            <div>
-                <img src="https://static-00.iconduck.com/assets.00/book-round-icon-2048x2047-39wlwgum.png"
-                class="w-[300px] h-[300px]" alt="책 관리">
-                <p class="pt-10 text-slate-700 text-center font-bold text-4xl">책 관리</p>
-            </div>
-            <div>
-                <img src="https://cdn-icons-png.freepik.com/512/7718/7718888.png"
-                class="w-[300px] h-[300px]" alt="회원 관리">
-                <p class="pt-10 text-slate-700 text-center font-bold text-4xl">회원 관리</p>
-            </div>
-        </div>
-    </div>
+     <div class="max-w-[1300px] mx-auto admin_options">
+		 <div>
+		 <a href="/" >
+                                <img class="book_orderImg" src="../assets/icons/book_order.png" alt="발주">
+                                <span class=" text-2xl font-semibold whitespace-nowrap">발주</span>
+                            </a>
+		 </div>
+		 <div>
+		 <a href="/" >
+                                <img class="book_managementImg" src="../assets/icons/book_management.png" alt="도서관리">
+                                <span class=" text-2xl font-semibold whitespace-nowrap">도서 관리</span>
+                            </a>
+		 </div>
+		 <div>
+		 <a href="/" >
+                                <img class="user_managementImg" src="../assets/icons/user_management.png" alt="회원관리">
+                                <span class=" text-2xl font-semibold whitespace-nowrap">회원 관리</span>
+                            </a>
+		 </div>
+	 </div>
     <div id="footer">
         <footer class="max-w-[1300px] mx-auto border-t border-slate-900/5 bg-white">
             <div class="flex flex-row justify-between mx-auto w-full px-10">
@@ -99,3 +100,24 @@
 </div>
 </body>
 </html>
+<style>
+.admin_options{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    margin-top: 50px; 
+}
+.admin_options div{
+	text-align: center;
+}
+.admin_options img{
+	display: block;
+    margin: 0 auto 10px;
+	width:200px;
+	height:200px;
+}
+.admin_options span {
+    display: block;
+}
+</style>
