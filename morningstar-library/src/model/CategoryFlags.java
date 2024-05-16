@@ -19,6 +19,10 @@ public class CategoryFlags {
 		this.code = code;
 	}
 	
+	public CategoryFlags(CategoryFlags other) {
+		code = other.getCategoryCode();
+	}
+	
 	public Vector<String> getCategories() {
 		Vector<String> categories = new Vector<String>();
 		int flags = code;

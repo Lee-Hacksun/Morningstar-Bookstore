@@ -32,7 +32,7 @@ public class ViewBookServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BookService bookService = new BookService();
-		bookService.loadBook(WebConfig.MAIN_PAGE_BOOK_COUNT);
+		bookService.loadBooks(WebConfig.MAIN_PAGE_BOOK_COUNT);
 		
 		request.setAttribute("books", bookService.getBooks());
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
