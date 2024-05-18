@@ -42,31 +42,54 @@ public class Order {
 				.toString();
 	}
 	
+	
+	/*getter, setter 메소드*/
 	public int getOrdeID() {
 		return orderID;
+	}
+	public void setOrdeID(int orderID) {
+	    this.orderID = orderID;
 	}
 	
 	public String getuserID() {
 		return userID;
 	}
+	public void setUserID(String userID) {
+	    this.userID = userID;
+	}
 	
 	public String getOrderDate() {
 		return orderDate;
+	}
+	public void setOrderDate(String orderDate) {
+	    this.orderDate = orderDate;
 	}
 	
 	public String getDeliveryAddress() {
 		return deliveryAddress;
 	}
-	
+	public void setDeliveryAddress(String deliveryAddress) {
+	    this.deliveryAddress = deliveryAddress;
+	}
+
 	public int getTotalAmount() {
 		return totalAmount;
+	}
+	public void setTotalAmount(int totalAmount) {
+	    this.totalAmount = totalAmount;
 	}
 	
 	public int getTotalBookCount() {
 		return totalBookCount;
 	}
+	public void setTotalBookCount(int totalBookCount) {
+	    this.totalBookCount = totalBookCount;
+	}
 	
 	public String[] getIsbns() {
 		return isbns;
+	}
+	public void setIsbns(String[] isbns) {
+	    this.isbns = isbns;
 	}
 }

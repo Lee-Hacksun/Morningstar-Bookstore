@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,52 +13,8 @@
 </head>
 <body>
 <div class="flex flex-col h-screen justify-between">
-    <div id="header">
-        <div class="fixed top-0 z-50 pt-5 w-full bg-white">
-            <div class="mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-                <div class="relative z-50 grid grid-cols-3 gap-4">
-                    <!-- logo -->
-                    <div class="flex items-center md:gap-x-12">
-                        <a aria-label="Home" href="/">
-                            <img class="w-40 mr-2" src="../assets/icons/morningstarlogo.png" alt="logo">
-                        </a>
-                    </div>
-                    <!-- 로그인 -->
-                    <div class="flex items-center lg:order-2 col-start-3 justify-end">
-                        <a href="#"
-                           class="text-gray-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-bold  rounded-lg text-md px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                            로그인
-                        </a>
-                        <a href="#"
-                           class="text-gray-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-bold  rounded-lg text-md px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                            회원가입
-                        </a>
-                        <button data-collapse-toggle="mobile-menu-2" type="button"
-                                class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                                aria-controls="mobile-menu-2" aria-expanded="false">
-                            <span class="sr-only">Open main menu</span>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                            <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="mx-auto mt-5 max-w-[1300px] px-4 sm:px-6 lg:px-8 text-center">
-                <div class="flex flex-row justify-between border-b-2 border-gray-200 w-full">
-                </div>
-            </div>
-        </div>
-    </div>
+	<%@include file ="../assets/header/user_header.jsp" %>
+	
     <div id="content" class="mb-auto p-4 h-auto pt-28 pb-40">
         <div id="upper_banner" class="mx-auto mt-5 max-w-[1300px] px-4 sm:px-6 lg:px-8 text-center">
             <div id="default-carousel" class="relative mt-5" data-carousel="slide">
@@ -182,114 +139,36 @@
                 </div>
             </nav>
 
-            <div id="lower_banner" class="mb-10 mx-auto max-w-[1300px]">
-                <!-- 베스트셀러 -->
-                <div class="justify-items-end w-full p-4">
-                    <div class="grid grid-cols-4 gap-4">
-                        <div class="float-left">
-                            <div>
-                                <a href="/products/504">
-                                    <img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9788946422711.jpg"
-                                         alt="book cover">
-                                </a>
-                                <div>
-                                    <a href="/products/">
-                                        <div class="flex flex-col p-3">
-                                            <div>
-                                                <p class="text-left text-xl font-bold">있는 힘껏 산다</p>
-                                            </div>
-                                            <div class="mt-1">
-                                                <p class="text-left text-base">정재경 · 샘터(샘터사)</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="float-left">
-                            <div>
-                                <a href="/products/366">
-                                    <img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791193262122.jpg" alt="book cover">
-                                </a>
-                                <div>
-                                    <a href="/products/">
-                                        <div class="flex flex-col p-3">
-                                            <div>
-                                                <p class="text-left text-xl font-bold">일류의 조건</p>
-                                            </div>
-                                            <div class="mt-1">
-                                                <p class="text-left text-base">사이토 다카시 · 필름(Feelm)</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="float-left">
-                            <div>
-                                <a href="/products/348">
-                                    <img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791171830237.jpg" alt="book cover">
-                                </a>
-                                <div>
-                                    <a href="/products/">
-                                        <div class="flex flex-col p-3">
-                                            <div>
-                                                <p class="text-left text-xl font-bold">법구경 마음공부</p>
-                                            </div>
-                                            <div class="mt-1">
-                                                <p class="text-left text-base">정운 · 필름(Feelm)</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="float-left">
-                            <div>
-                                <a href="/products/354">
-                                    <img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791170611080.jpg" alt="book cover">
-                                </a>
-                                <div>
-                                    <a href="/products/">
-                                        <div class="flex flex-col p-3">
-                                            <div>
-                                                <p class="text-left text-xl font-bold">벌거벗은 세계사: 권력자편</p>
-                                            </div>
-                                            <div class="mt-1">
-                                                <p class="text-left text-base">tvn<벌거벗은세계사>제작팀 · 교보문고</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+			           <div id="lower_banner" class="mb-10 mx-auto max-w-[1300px]">
+			               <!-- 베스트셀러 -->
+			               <div class="justify-items-end w-full p-4">
+						        <div class="grid grid-cols-4 gap-4">
+						            <c:forEach var="book" items="${books}">
+						                <div class="float-left">
+						                    <div>
+						                        <a href="/book_detail.jsp?isbn=${book.isbn}">
+						                            <img src="${book.bookImageURL}" alt="book cover">
+						                        </a>
+						                        <div>
+						                            <div class="flex flex-col p-3">
+						                                <div>
+						                                    <p class="text-left text-xl font-bold">${book.bookName}</p>
+						                                </div>
+						                                <div class="mt-1">
+						                                    <p class="text-left text-base">${book.author} · ${book.publisher}</p>
+						                                </div>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						            </c:forEach>
+						        </div>
+						    </div>
+			           </div>
             </div>
         </div>
     </div>
-    <div id="footer">
-        <footer class="max-w-[1300px] mx-auto border-t border-slate-900/5 bg-white">
-            <div class="flex flex-row justify-between mx-auto w-full px-10">
-                <div class="float-left mt-7 mb-7">
-                    <p class="text-gray-500 text-sm font-bold mb-2">
-                        한신대학교
-                    </p>
-                    <p class="text-gray-500 text-sm font-normal mb-2">
-                        6조 | 이승은 이학선 전태준 정민구 정규민
-                    </p>
-                    <p class="text-gray-500 text-sm font-normal">
-                        Copyright ⓒ 6조
-                    </p>
-                </div>
-                <div class="content-center justify-end">
-                    <img src="https://www.hs.ac.kr/sites/testPub/images/logo.jpg">
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
+
+<%@include file ="../assets/footer/footer.jsp" %>
 </body>
 </html>
