@@ -7,4 +7,13 @@ package constant;
 
 public class ManagerOrderAttribute {
 
+    public static final String MANAGER_ORDER_TABLE_NAME = "managerOrder";
+    public static final String CUSTOMER_ID = "customerID";
+    public static final String MANAGER_ORDER_ID = "managerOrderID";
+    public static final String ORDER_DATE = "orderDate";
+
+
+    public static final String BOOK_OF_MANAGER_ORDER_TABLE_NAME = "bookOfManagerOrder";
+    public static final String BOOK_OF_MANAGER_ORDER_ID = "managerOrderID";
+    public static final String ISBN = "ISBN";
 }
