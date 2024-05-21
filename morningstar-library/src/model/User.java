@@ -33,48 +33,27 @@ public class User {
 				.toString();
 	}
 	
-	
-	
-	/*getter, setter 메소드*/
 	public String getUserID() {
-        return userID;
-    }
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getUserPW() {
-        return userPW;
-    }
-    public void setUserPW(String userPW) {
-        this.userPW = userPW;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDeliveryAddress() {
-        return deliveryAddress;
-    }
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
-
-    public String getEmailAddress() {
-        return eMailAddress;
-    }
-    public void setEmailAddress(String emailAddress) {
-        this.eMailAddress = emailAddress;
-    }
-
-    public Boolean getManagerMode() {
-        return managerMode;
-    }
-    public void setManagerMode(Boolean managerMode) {
-        this.managerMode = managerMode;
-    }
+		return userID;
+	}
+	
+	public String getUserPW() {
+		return userPW;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+	
+	public String getEMailAddress() {
+		return eMailAddress;
+	}
+	
+	public Boolean isManager() {
+		return managerMode;
+	}
 }

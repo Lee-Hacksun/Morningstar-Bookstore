@@ -44,15 +44,6 @@
                                    placeholder="1" required="">
                         </div>
                         <div>
-                            <label for="category"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">분류</label>
-                            <select name="category" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-							    <option value="0">국내</option>
-							    <option value="1">동양</option>
-							    <option value="2">서양</option>
-							  </select>
-                        </div>
-                        <div>
                             <label for="date"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">발주일</label>
                             <input type="date" name="date" id="date"

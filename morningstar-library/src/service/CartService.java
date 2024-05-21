@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import constant.CartAttribute;
 import database.DBConnector;
-import model.BookDTO;
+import model.Book;
 import model.Cart;
 import model.Pair;
 
@@ -46,7 +46,7 @@ public class CartService {
 	
 	public Cart loadCart(String userID) {
 		try {
-			Vector<Pair<BookDTO, Integer, Integer>> books = new Vector<Pair<BookDTO, Integer, Integer>>();
+			Vector<Pair<Book, Integer, Integer>> books = new Vector<Pair<Book, Integer, Integer>>();
 			BookService bookService = new BookService();
 			InventoryService inventoryService = new InventoryService();
 			int totalBookCount = 0;

@@ -8,14 +8,14 @@ import java.util.Vector;
 
 import constant.BookAttribute;
 import database.DBConnector;
-import model.BookDTO;
+import model.Book;
 
 public class BookService {	
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	private Vector<BookDTO> books = new Vector<BookDTO>();
+	private Vector<Book> books = new Vector<Book>();
 	private int cursor;
 	
 	public BookService(int cursor) {
@@ -26,7 +26,7 @@ public class BookService {
 		this(0);
 	}
 	
-	public Vector<BookDTO> getBooks() {
+	public Vector<Book> getBooks() {
 		return books;
 	}
 	
@@ -40,7 +40,7 @@ public class BookService {
 			cursor += count;
 						
 			while(rs.next()) {
-				books.add(new BookDTO(
+				books.add(new Book(
 						rs.getString(BookAttribute.ISBN)
 						, rs.getString(BookAttribute.BOOK_NAME)
 						, rs.getString(BookAttribute.AUTHOR)
@@ -61,7 +61,7 @@ public class BookService {
 		}
 	}
 	
-	public BookDTO loadBook(String ISBN) {
+	public Book loadBook(String ISBN) {
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", BookAttribute.TABLE_NAME, "WHERE", BookAttribute.ISBN, "=?;"));
@@ -69,7 +69,7 @@ public class BookService {
 
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return new BookDTO(
+				return new Book(
 						rs.getString(BookAttribute.ISBN)
 						, rs.getString(BookAttribute.BOOK_NAME)
 						, rs.getString(BookAttribute.AUTHOR)
