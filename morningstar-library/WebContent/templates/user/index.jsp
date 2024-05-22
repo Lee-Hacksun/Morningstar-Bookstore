@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.sql.*, database.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -142,33 +141,30 @@
 			           <div id="lower_banner" class="mb-10 mx-auto max-w-[1300px]">
 			               <!-- 베스트셀러 -->
 			               <div class="justify-items-end w-full p-4">
-						        <div class="grid grid-cols-4 gap-4">
-						            <c:forEach var="book" items="${books}">
-						                <div class="float-left">
-						                    <div>
-						                        <a href="/book_detail.jsp?isbn=${book.isbn}">
-						                            <img src="${book.bookImageURL}" alt="book cover">
-						                        </a>
-						                        <div>
-						                            <div class="flex flex-col p-3">
-						                                <div>
-						                                    <p class="text-left text-xl font-bold">${book.bookName}</p>
-						                                </div>
-						                                <div class="mt-1">
-						                                    <p class="text-left text-base">${book.author} · ${book.publisher}</p>
-						                                </div>
-						                            </div>
-						                        </div>
-						                    </div>
-						                </div>
-						            </c:forEach>
-						        </div>
-						    </div>
-			           </div>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="float-left">
+                            <div>
+                                <a href="/products/504">
+                                    <img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9788946422711.jpg"
+                                         alt="book cover">
+                                <div>
+                                        <div class="flex flex-col p-3">
+                                            <div>
+                                                <p class="text-left text-xl font-bold">있는 힘껏 산다</p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <p class="text-left text-base">정재경 · 샘터(샘터사)</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
-
+    
 <%@include file ="../assets/footer/footer.jsp" %>
 </body>
 </html>

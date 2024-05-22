@@ -27,33 +27,19 @@ public class Review {
 				.toString();
 	}
 	
-	
-	/*getter, setter 메소드*/
 	public String getuserID() {
 		return userID;
-	}
-	public void setuserID(String userID) {
-	    this.userID = userID;
 	}
 	
 	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(String isbn) {
-	    this.isbn = isbn;
-	}
 	
 	public String getContents() {
 		return contents;
 	}
-	public void setContents(String contents) {
-	    this.contents = contents;
-	}
 	
 	public int getRating() {
 		return rating;
-	}
-	public void setRating(int rating) {
-	    this.rating = rating;
 	}
 }
