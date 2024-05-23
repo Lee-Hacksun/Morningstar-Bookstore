@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="h-full scroll-smooth">
 <head>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
@@ -17,7 +19,7 @@
                     <!-- logo -->
                     <div class="flex items-center md:gap-x-12">
                         <a aria-label="Home" href="/">
-                            <img class="w-40 mr-2" src="../../img/morningstarlogo.png" alt="logo">
+                            <img class="w-40 mr-2" src="../../assets/icons/morningstarlogo.png" alt="logo">
                         </a>
                     </div>
                     <!-- 로그인 -->
@@ -145,16 +147,74 @@
                     <section id="BookInfo">
                         <div class="relative max-w-[1300px] mx-auto">
                             <div class="mx-auto py-8 flex justify-center items-center">
-                                <div class="w-[860px] content-center">
+                                <div class="flex flex-col w-[814px] content-center">
                                     <img src="https://contents.kyobobook.co.kr/sih/fit-in/814x0/dtl/illustrate/196/i9788934950196.jpg"
                                          class="rounded-lg">
+                                    <div class="justify-start space-y-4 mt-32 pb-10 border-b border-gray-200">
+                                        <h2 class="text-xl font-semibold">책 소개</h2>
+                                        <h5 class="text-lg font-semibold">이 책이 속한 분야</h5>
+                                        <p class="text-base text-gray-800">
+                                            국내도서 <span class="text-gray-500">></span> 컴퓨터/IT <span class="text-gray-500">></span> 컴퓨터공학 <span class="text-gray-500">></span> 소프트웨어공학
+                                        </p>
+                                    </div>
+                                    <div class="justify-start py-10">
+                                        <p class="text-sm text-gray-800 leading-6">
+                                            《Code Complete 2》는 소프트웨어 구현을 둘러싼 다양한 비유부터 기초적인 프로그래밍, 시스템 구축, 소프트웨어 장인정신에 이르기까지 소프트웨어 업계에 종사하는 분이라면 누구나 읽어야 할 필독서입니다.
+                                            <br>
+                                            <br>
+                                            2004년에 초판이 출간된 이후로 시간이 흘러도 여전히 가치 있는 명저의 반열에 오른 책으로서 특정 프로그래밍 언어나 플랫폼과는 무관한 내용으로 구성돼 있어 소프트웨어 업계에 종사하는 모든 분들에게 도움될 만한 내용으로 가득 차 있습니다.
+                                        </p>
+                                    </div>
+                                    <div class="justify-start space-y-4 mt-32 pb-10 border-b border-gray-300">
+                                        <h2 class="text-xl font-semibold pb-5 border-b border-gray-800">기본정보</h2>
+                                        <table class="text-left">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row" class="py-3">ISBN</th>
+                                                <td class="pl-20">9791158390600</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="py-3">
+                                                    발행(출시)일자
+                                                </th>
+                                                <td class="pl-20">
+                                                    2017년 07월 28일
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="py-3">쪽수</th>
+                                                <td class="pl-20">1000쪽</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="py-3">크기</th>
+                                                <td class="pl-20">
+                                                    187 * 242 * 53mm / 1859 g
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="py-3">총권수</th>
+                                                <td class="pl-20">1권</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="py-3">시리즈명</th>
+                                                <td class="pl-20">위키북스 IT Leaders 시리즈
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="py-3">원서명/저자명</th>
+                                                <td class="pl-20">Code Complete/McConnell, Steve</td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <!-- 리뷰 -->
-                    <section id="BookReview" class="bg-white py-8 lg:py-16">
-                        <div class="mt-20 max-w-3xl mx-auto px-4">
+                    <section id="BookReview" class="bg-white py-8 lg:pt-8 lg:pb-40">
+                        <div class="mt-20 max-w-[814px] mx-auto px-4">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">리뷰 (1)</h2>
                             </div>
@@ -163,7 +223,7 @@
                                     <label for="comment" class="sr-only">Your comment</label>
                                     <textarea id="comment" rows="6"
                                               class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                                              placeholder="Write a comment..." required></textarea>
+                                              placeholder="리뷰를 작성해 주세요..." required></textarea>
                                 </div>
                                 <button type="submit"
                                         class="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800">
@@ -198,15 +258,15 @@
                                             aria-labelledby="dropdownMenuIconHorizontalButton">
                                             <li>
                                                 <a href="#"
-                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">수정</a>
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">삭제</a>
                                             </li>
                                             <li>
                                                 <a href="#"
-                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">신고</a>
                                             </li>
                                         </ul>
                                     </div>
