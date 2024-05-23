@@ -19,7 +19,7 @@
                     <!-- logo -->
                     <div class="flex items-center md:gap-x-12">
                         <a aria-label="Home" href="/">
-                            <img class="w-40 mr-2" src="../../img/morningstarlogo.png" alt="logo">
+                            <img class="w-40 mr-2" src="../../assets/icons/morningstarlogo.png" alt="logo">
                         </a>
                     </div>
                     <!-- 로그인 -->
@@ -70,7 +70,7 @@
                         <div>
                             <div class="flex py-6">
                                 <div class="mx-auto p-10">
-                                    <img src="../../img/emptycart.png" class="mb-10 w-56 justify-center">
+                                    <img src="../../assets/icons/emptycart.png" class="mb-10 w-56 justify-center">
                                     <p class="text-xl font-bold text-center">
                                         찜한 상품이 없습니다.
                                     <p>

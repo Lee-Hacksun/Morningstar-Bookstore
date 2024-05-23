@@ -44,7 +44,7 @@
                                 <span class="sr-only">Toggle sidebar</span>
                             </button>
                             <a href="/" class="flex items-center justify-between mr-4">
-                                <img class="w-10 mr-3" src="../../img/morningstarlogo.png" alt="logo">
+                                <img class="w-10 mr-3" src="../../assets/icons/morningstarlogo.png" alt="logo">
                                 <span class="self-center text-2xl font-semibold whitespace-nowrap">ADMINISTRATOR</span>
                             </a>
                         </div>
