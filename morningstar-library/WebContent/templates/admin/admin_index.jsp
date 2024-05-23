@@ -44,7 +44,7 @@
                                 <span class="sr-only">Toggle sidebar</span>
                             </button>
                             <a href="/admin/admin_index.jsp" class="flex items-center justify-between mr-4">
-                                <img class="w-10 mr-3" src="../assets/icons/morningstarlogo.png" alt="logo">
+                                <img class="w-10 mr-3" src="../../assets/icons/morningstarlogo.png" alt="logo">
                                 <span class="self-center text-2xl font-semibold whitespace-nowrap">ADMINISTRATOR</span>
                             </a>
                         </div>
@@ -60,27 +60,27 @@
      <div class="max-w-[1300px] mx-auto admin_options">
 		 <div>
 		 <a href="/" >
-                                <img class="book_orderImg" src="../assets/icons/book_order.png" alt="발주">
+                                <img class="book_orderImg" src="../../assets/icons/book_order.png" alt="발주">
                                 <span class=" text-2xl font-semibold whitespace-nowrap">발주</span>
                             </a>
 		 </div>
 		 <div>
 		 <a href="/" >
-                                <img class="book_managementImg" src="../assets/icons/book_management.png" alt="도서관리">
+                                <img class="book_managementImg" src="../../assets/icons/book_management.png" alt="도서관리">
                                 <span class=" text-2xl font-semibold whitespace-nowrap">도서 관리</span>
                             </a>
 		 </div>
 		 <div>
 		 <a href="/" >
-                                <img class="user_managementImg" src="../assets/icons/user_management.png" alt="회원관리">
+                                <img class="user_managementImg" src="../../assets/icons/user_management.png" alt="회원관리">
                                 <span class=" text-2xl font-semibold whitespace-nowrap">회원 관리</span>
                             </a>
 		 </div>
 	 </div>
     <div id="footer">
-        <footer class="max-w-[1300px] mx-auto border-t border-slate-900/5 bg-white">
-            <div class="flex flex-row justify-between mx-auto w-full px-10">
-                <div class="float-left mt-7 mb-7">
+        <footer class="w-full mx-auto border-t border-slate-900/5 bg-white">
+            <div class="flex flex-row justify-between mx-auto max-w-[1300px] px-10">
+                <div class="float-left mt-10 mb-10">
                     <p class="text-gray-500 text-sm font-bold mb-2">
                         한신대학교
                     </p>

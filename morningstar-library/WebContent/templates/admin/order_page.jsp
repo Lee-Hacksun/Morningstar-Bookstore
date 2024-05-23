@@ -44,7 +44,7 @@
                                 <span class="sr-only">Toggle sidebar</span>
                             </button>
                             <a href="/" class="flex items-center justify-between mr-4">
-                                <img class="w-10 mr-3" src="../../img/morningstarlogo.png" alt="logo">
+                                <img class="w-10 mr-3" src="../../assets/icons/morningstarlogo.png" alt="logo">
                                 <span class="self-center text-2xl font-semibold whitespace-nowrap">ADMINISTRATOR</span>
                             </a>
                         </div>
@@ -106,9 +106,9 @@
         </div>
     </section>
     <div id="footer">
-        <footer class="max-w-[1300px] mx-auto border-t border-slate-900/5 bg-white">
-            <div class="flex flex-row justify-between mx-auto w-full px-10">
-                <div class="float-left mt-7 mb-7">
+        <footer class="w-full mx-auto border-t border-slate-900/5 bg-white">
+            <div class="flex flex-row justify-between mx-auto max-w-[1300px] px-10">
+                <div class="float-left mt-10 mb-10">
                     <p class="text-gray-500 text-sm font-bold mb-2">
                         한신대학교
                     </p>
