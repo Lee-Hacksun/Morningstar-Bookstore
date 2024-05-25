@@ -32,6 +32,8 @@ public class BookService {
 	
 	// 두번의 loadBook호출 사이에 insert Book이 일어나면 버그의 가능성 있음 
 	public void loadBooks(int count) {
+		books.clear();
+		
 		try {			
 			con = DBConnector.getConnection();			
 			pstmt = con.prepareStatement("SELECT * FROM " + BookAttribute.TABLE_NAME + " LIMIT " + cursor + ", " + count + ";");
@@ -61,7 +63,7 @@ public class BookService {
 		}
 	}
 	
-	public Book loadBook(String ISBN) {
+	public Book loadBook(String ISBN) {		
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", BookAttribute.TABLE_NAME, "WHERE", BookAttribute.ISBN, "=?;"));

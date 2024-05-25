@@ -61,7 +61,7 @@ public class CartService {
 			while (rs.next()) {
 				String ISBN = rs.getString(CartAttribute.ISBN);
 				int bookCount = rs.getInt(CartAttribute.BOOKCOUNT);
-				int bookPrice = inventoryService.loadPrice(ISBN);
+				int bookPrice = inventoryService.getPrice(ISBN);
 				
 				books.add(new Pair<>(bookService.loadBook(ISBN), bookCount, bookPrice));
 				totalBookCount += bookCount;

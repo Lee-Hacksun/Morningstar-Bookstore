@@ -19,8 +19,8 @@
 				<c:forEach items="${books}" var="book">
 					<div class="float-left">
 						<div>
-							<a href="/products/${book.isbn}"> <img
-								src="${book.bookImageURL}" alt="book cover">
+							<a href="BookDetail?isbn=${book.isbn}"> 
+							<img src="${book.bookImageURL}" alt="book cover">
 							</a>
 							<div>
 								<a href="/products/">
