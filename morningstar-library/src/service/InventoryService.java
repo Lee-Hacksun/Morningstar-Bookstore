@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 import constant.InventoryAttribute;
 import database.DBConnector;
@@ -19,7 +20,18 @@ public class InventoryService {
 		price = -1;
 	}
 	
-	public int loadPrice(String ISBN) {
+	public String toString() {
+		  DecimalFormat formatter = new DecimalFormat("#,###");
+		  
+		  String formattedPrice= formatter.format(price);
+		  return formattedPrice;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public int getPrice(String ISBN) {
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement(String.join(" ", "SELECT", InventoryAttribute.PRICE, "FROM", InventoryAttribute.TABLE_NAME, "WHERE", InventoryAttribute.ISBN, "=?;"));
