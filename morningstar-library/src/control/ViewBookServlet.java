@@ -35,7 +35,7 @@ public class ViewBookServlet extends HttpServlet {
 		bookService.loadBooks(WebConfig.MAIN_PAGE_BOOK_COUNT);
 		
 		request.setAttribute("books", bookService.getBooks());
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
 	}
 
 }
