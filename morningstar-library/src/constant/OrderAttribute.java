@@ -10,7 +10,7 @@ package constant;
 
 public class OrderAttribute {
 
-    public static final String TABLE_NAME = "order";
+    public static final String TABLE_NAME = "sale";
     public static final String ORDER_ID = "orderID";
     public static final String CUSTOMER_ID = "customerID";
     public static final String ORDER_DATE = "orderDate";

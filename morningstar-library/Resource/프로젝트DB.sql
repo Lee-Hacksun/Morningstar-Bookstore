@@ -39,11 +39,13 @@ create table user(
 
 drop table if exists sale;
 create table sale(
-   orderID int,
+   orderID int AUTO_INCREMENT,
    userID varchar(10),
    orderDate date,
    deliveryAddress varchar(150),
+   totalBookCount int,
    totalAmount int,
+   isValid boolean,
    primary key(orderID)
 );
 
