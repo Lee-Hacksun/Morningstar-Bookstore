@@ -80,7 +80,7 @@
 										<tr>
 											<!-- 도서 이미지 -->
 											<td class="w-96 min-w-56 whitespace-nowrap py-4"><a
-												href="#"
+												href="BookDetail?isbn=${book.isbn}"
 												class="flex items-center gap-8 font-medium hover:underline">
 													<div class="w-20 shrink-0">
 														<img class="h-full w-full" src="${book.bookImageURL}"
@@ -92,6 +92,7 @@
 												class="sr-only">Choose quantity:</label>
 												<div class="flex items-center">
 													<button type="button" id="decrement-button-1"
+													onClick="UpdateDecrement('${cart.userID}', '${book.isbn}', '${count}')"
 														data-input-counter-decrement="counter-input-1"
 														class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
 														<svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -102,10 +103,28 @@
 																stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                             </svg>
 													</button>
+													<script>
+														function UpdateDecrement(userID, isbn, count) {
+															var xhr = new XMLHttpRequest();
+															var servletUrl = "UpdateCart?isbn=" + isbn + "&userID=" + userID + "&count=" + (parseInt(count) - 1);
+															xhr.open("GET", servletUrl, true);
+															xhr.onreadystatechange = function() {
+																if (xhr.readyState == XMLHttpRequest.DONE) {
+																	if (xhr.status == 200) {
+																		location.reload();
+																	} else {
+																		console.error('서버 요청 실패');
+																	}
+																}
+															};
+															xhr.send();
+														}
+													</script>
 													<input type="text" id="counter-input-1" data-input-counter
 														class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
 														placeholder="" value="${count}" required />
 													<button type="button" id="increment-button-1"
+													onClick="UpdateIncrement('${cart.userID}', '${book.isbn}', '${count}')"
 														data-input-counter-increment="counter-input-1"
 														class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
 														<svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -117,6 +136,23 @@
 																d="M9 1v16M1 9h16" />
                                             </svg>
 													</button>
+													<script>
+														function UpdateIncrement(userID, isbn, count) {
+															var xhr = new XMLHttpRequest();
+															var servletUrl = "UpdateCart?isbn=" + isbn + "&userID=" + userID + "&count=" + (parseInt(count) + 1);
+															xhr.open("GET", servletUrl, true);
+															xhr.onreadystatechange = function() {
+																if (xhr.readyState == XMLHttpRequest.DONE) {
+																	if (xhr.status == 200) {
+																		location.reload();
+																	} else {
+																		console.error('서버 요청 실패');
+																	}
+																}
+															};
+															xhr.send();
+														}
+													</script>
 												</div></td>
 											<!-- 도서 가격 -->
 											<td
@@ -128,6 +164,7 @@
 											<!-- 도서 삭제 -->
 											<td class="py-4">
 												<button data-tooltip-target="remove-tooltip"
+													onClick="RemoveBook('${cart.userID}', '${book.isbn}')"
 													data-tooltip-placement="top" type="button"
 													class="ml-auto block rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:text-gray-400">
 													<span class="sr-only"> Remove </span>
@@ -139,7 +176,25 @@
 															stroke-width="2"
 															d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                         </svg>
-												</button>
+												</button> <script>
+													function RemoveBook(userID, isbn) {
+														var xhr = new XMLHttpRequest();
+														var servletUrl = "RemoveBookCart?isbn=" + isbn + "&userID=" + userID;
+														xhr.open("GET", servletUrl, true);
+														xhr.onreadystatechange = function() {
+															if (xhr.readyState == XMLHttpRequest.DONE) {
+																if (xhr.status == 200) {
+																	alert("장바구니에서 도서가 삭제되었습니다.");
+																	location.reload();
+
+																} else {
+																	console.error('서버 요청 실패');
+																}
+															}
+														};
+														xhr.send();
+													}
+												</script>
 												<div id="remove-tooltip" role="tooltip"
 													class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
 													Remove

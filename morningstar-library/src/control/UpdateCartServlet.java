@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Cart;
 import service.CartService;
 
 /**
- * Servlet implementation class GoCartServlet
+ * Servlet implementation class UpdateCartServlet
  */
-@WebServlet("/GoCart")
-public class GoCartServlet extends HttpServlet {
+@WebServlet("/UpdateCart")
+public class UpdateCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GoCartServlet() {
+    public UpdateCartServlet() {
         super();
     }
 
@@ -28,22 +27,12 @@ public class GoCartServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		String userID = request.getParameter("userID");
+		String isbn = request.getParameter("isbn");
+		int count = Integer.parseInt(request.getParameter("count"));
 		
 		CartService cartService = new CartService();
-		//Cart cart = cartService.getCart(userID);
-		//test
-		Cart cart = cartService.getCart("hanshin");
-		
-		if(cart.getTotalBookCount() == 0) {
-			request.getRequestDispatcher("/shoppingcart_empty.jsp").forward(request, response);
-		} else {
-			request.setAttribute("cart", cart);
-			request.getRequestDispatcher("/shoppingcart.jsp").forward(request, response);
-		}
-		
-		
+		cartService.updateCount(userID, isbn, count);
 	}
 
 }
