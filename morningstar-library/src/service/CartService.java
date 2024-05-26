@@ -44,7 +44,7 @@ public class CartService {
 		return false;
 	}
 	
-	public Cart loadCart(String userID) {
+	public Cart getCart(String userID) {
 		try {
 			Vector<Pair<Book, Integer, Integer>> books = new Vector<Pair<Book, Integer, Integer>>();
 			BookService bookService = new BookService();

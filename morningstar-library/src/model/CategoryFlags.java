@@ -7,7 +7,7 @@ public class CategoryFlags {
 	public static final int EASTERN_VALUE = 1 << 1;
 	public static final int WESTERN_VALUE = 1 << 2;
 	
-	public static final String[] FLAG_VALUES = {"domestic", "eastern", "western"};
+	public static final String[] FLAG_VALUES = {"국내", "동양", "서양"};
 	
 	private int code;
 	

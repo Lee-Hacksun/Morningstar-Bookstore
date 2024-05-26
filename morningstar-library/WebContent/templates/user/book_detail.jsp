@@ -7,6 +7,7 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -72,7 +73,7 @@
 						<ol role="list" class="flex items-center space-x-4">
 							<li>
 								<div class="flex items-center">
-									<p class="mr-4 text-sm font-medium text-gray-900">국내도서</p>
+									<p class="mr-4 text-sm font-medium text-gray-900">${book.category[0]}도서</p>
 									<svg viewBox="0 0 6 20" aria-hidden="true"
 										class="h-5 w-auto text-gray-300">
                                     <path
@@ -81,9 +82,11 @@
                                 </svg>
 								</div>
 							</li>
-							<li class="text-sm"><a href="/"
-								class="mr-4 text-sm font-medium text-sky-700 hover:text-sky-700">인문</a>
-							</li>
+							<c:forEach items="${book.category}" var="item" begin="1">
+								<li class="text-sm"><a href="/"
+									class="mr-4 text-sm font-medium text-sky-700 hover:text-sky-700">${item}</a>
+								</li>
+							</c:forEach>
 						</ol>
 					</nav>
 					<div class="p-8 mx-auto relative max-w-[1300px]">
@@ -91,9 +94,8 @@
 							<!-- 도서 이미지 -->
 							<div>
 								<div class="w-[400px]">
-									<img
-										src="${book.bookImageURL}"
-										alt="bookimage" class="shadow-xl">
+									<img src="${book.bookImageURL}" alt="bookimage"
+										class="shadow-xl">
 								</div>
 							</div>
 							<!-- 도서 정보 및 가격 정보 -->
@@ -110,11 +112,16 @@
 											<p
 												class="content-center inline-block text-base font-medium text-gray-600">
 												${book.author} <span class="mx-1 text-slate-300">|</span>
-												${book.publisher} <span class="mx-1 text-slate-300">|</span> ${releaseDate}
+												${book.publisher} <span class="mx-1 text-slate-300">|</span>
+												${releaseDate}
 											</p>
 										</div>
 										<div class="mt-5">
-											<p class="text-2xl font-bold text-gray-900">${price}원</p>
+											<p class="text-2xl font-bold text-gray-900">
+												<fmt:formatNumber var="formattedPrice" value='${price}'
+													type='currency' currencyCode='KRW' maxFractionDigits="0" />
+												<c:out value="${formattedPrice}" />
+											</p>
 										</div>
 									</div>
 									<div>
@@ -158,23 +165,21 @@
 							<div class="relative max-w-[1300px] mx-auto">
 								<div class="mx-auto py-8 flex justify-center items-center">
 									<div class="flex flex-col w-[814px] content-center">
-										<img
-											src="https://contents.kyobobook.co.kr/sih/fit-in/814x0/dtl/illustrate/196/i9788934950196.jpg"
-											class="rounded-lg">
+										<img src="" class="rounded-lg">
 										<div
 											class="justify-start space-y-4 mt-32 pb-10 border-b border-gray-200">
 											<h2 class="text-xl font-semibold">책 소개</h2>
 											<h5 class="text-lg font-semibold">이 책이 속한 분야</h5>
 											<p class="text-base text-gray-800">
-												국내도서 <span class="text-gray-500">></span> 컴퓨터/IT <span
-													class="text-gray-500">></span> 컴퓨터공학 <span
-													class="text-gray-500">></span> 소프트웨어공학
+												<c:forEach items="${book.category}" var="item">
+													<span class="text-gray-500">></span>
+												${item}
+												</c:forEach>
 											</p>
 										</div>
 										<div class="justify-start py-10">
 											<p class="text-sm text-gray-800 leading-6">
-												${book.description}
-											</p>
+												${book.description}</p>
 										</div>
 										<div
 											class="justify-start space-y-4 mt-32 pb-10 border-b border-gray-300">
@@ -192,25 +197,12 @@
 													</tr>
 													<tr>
 														<th scope="row" class="py-3">쪽수</th>
-														<td class="pl-20">1000쪽</td>
-													</tr>
-													<tr>
-														<th scope="row" class="py-3">크기</th>
-														<td class="pl-20">187 * 242 * 53mm / 1859 g</td>
+														<td class="pl-20">${book.page}쪽</td>
 													</tr>
 													<tr>
 														<th scope="row" class="py-3">총권수</th>
 														<td class="pl-20">1권</td>
 													</tr>
-													<tr>
-														<th scope="row" class="py-3">시리즈명</th>
-														<td class="pl-20">위키북스 IT Leaders 시리즈</td>
-													</tr>
-													<tr>
-														<th scope="row" class="py-3">원서명/저자명</th>
-														<td class="pl-20">Code Complete/McConnell, Steve</td>
-													</tr>
-
 												</tbody>
 											</table>
 										</div>

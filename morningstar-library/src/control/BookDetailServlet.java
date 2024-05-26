@@ -29,14 +29,14 @@ public class BookDetailServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String isbn = request.getParameter("isbn");;
+		String isbn = request.getParameter("isbn");
 		
 		BookService bookService = new BookService();
 		InventoryService inventoryService = new InventoryService();
 		inventoryService.getPrice(isbn);
 		
 		request.setAttribute("book", bookService.loadBook(isbn));
-		request.setAttribute("price", inventoryService.toString());
+		request.setAttribute("price", inventoryService.getPrice());
 		request.getRequestDispatcher("/book_detail.jsp").forward(request, response);
 	}
 

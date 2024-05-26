@@ -19,11 +19,11 @@
 				<c:forEach items="${books}" var="book">
 					<div class="float-left">
 						<div>
-							<a href="BookDetail?isbn=${book.isbn}"> 
-							<img src="${book.bookImageURL}" alt="book cover">
+							<a href="BookDetail?isbn=${book.isbn}"> <img
+								src="${book.bookImageURL}" alt="book cover">
 							</a>
 							<div>
-								<a href="/products/">
+								<a href="BookDetail?isbn=${book.isbn}">
 									<div class="flex flex-col p-3">
 										<div>
 											<p class="text-left text-xl font-bold">${book.bookName}</p>
