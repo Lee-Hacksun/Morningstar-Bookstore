@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import constant.UserAttribute;
-import constant.PasswordUtil;
+import utility.PasswordUtil;
 import database.DBConnector;
 import model.User;
 
