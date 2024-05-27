@@ -51,6 +51,7 @@ create table sale(
 
 drop table if exists orderList;
 create table orderList(
+   userID varchar(10),
    orderID int,
    ISBN varchar(15),
    count int

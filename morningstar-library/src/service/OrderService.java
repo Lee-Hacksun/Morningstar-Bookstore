@@ -54,19 +54,20 @@ public class OrderService {
 			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", OrderAttribute.TABLE_NAME, "VALUES (?,?,?,?,?, 1);"));
 			 
 			pstmt.setInt(1, orderID); 
-			pstmt.setString(2, cart.getuserID());
+			pstmt.setString(2, cart.getUserID());
 			pstmt.setString(3, currentDate.toString());
 			pstmt.setString(4, deliveryAddress);
 			pstmt.setInt(5, cart.getTotalAmount());
 			
 			pstmt.executeUpdate();
 			
-			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", OrderListAttribute.TABLE_NAME, "VALUES (?,?,?);"));
+			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", OrderListAttribute.TABLE_NAME, "VALUES (?,?,?,?);"));
 			for(Pair<Book, Integer, Integer> book : cart.getBooks()) {
 				
-				pstmt.setInt(1, orderID);
-				pstmt.setString(2, book.getFirst().getIsbn());
-				pstmt.setInt(3,  book.getSecond());
+				pstmt.setString(1, cart.getUserID());
+				pstmt.setInt(2, orderID);
+				pstmt.setString(3, book.getFirst().getIsbn());
+				pstmt.setInt(4,  book.getSecond());
 				
 				pstmt.executeUpdate();
 			}
@@ -100,9 +101,8 @@ public class OrderService {
 	private void loadOrders(boolean isValid) {		
 		try {
 			Vector<String> isbns = new Vector<String>(); 
-			int orderID;
 			
-			ResultSet isbnRS;
+			ResultSet isbnRS = null;
 			con = DBConnector.getConnection();
 			
 			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.IS_VALID, "=?;"));			
@@ -138,5 +138,40 @@ public class OrderService {
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 		}
+	}
+	
+	// TODO : 테스트 필요 
+	public boolean isReviewable(String userID, String isbn) {		
+		try {
+			ResultSet bookRS = null;
+			
+			con = DBConnector.getConnection();
+			pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderListAttribute.ORDER_ID, "FROM", OrderListAttribute.TABLE_NAME, "WHERE", OrderListAttribute.USER_ID, "=? AND", OrderListAttribute.ISBN, "=?;"));
+			pstmt.setString(1, userID);
+			pstmt.setString(2, isbn);
+			
+			rs = pstmt.executeQuery();			
+			while(rs.next()) {
+				pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderAttribute.IS_VALID, "FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.ORDER_ID, "=?;"));
+				pstmt.setInt(1, rs.getInt(OrderListAttribute.ORDER_ID));
+				
+				bookRS = pstmt.executeQuery();				
+				if(bookRS.next()) {
+					if(!bookRS.getBoolean(OrderAttribute.IS_VALID)) {
+						return true;
+					}
+				}
+			} 
+			
+			return false;
+		} catch (SQLException ex) {
+			System.err.println("Database error in OrderService" + ex.getMessage());
+		
+		} finally {
+			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+		}
+		return false;
 	}
 }

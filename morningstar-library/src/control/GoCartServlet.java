@@ -34,7 +34,7 @@ public class GoCartServlet extends HttpServlet {
 		CartService cartService = new CartService();
 		//Cart cart = cartService.getCart(userID);
 		//test
-		Cart cart = cartService.getCart("hanshin");
+		Cart cart = cartService.getCart(userID);
 		
 		if(cart.getTotalBookCount() == 0) {
 			request.getRequestDispatcher("/shoppingcart_empty.jsp").forward(request, response);
