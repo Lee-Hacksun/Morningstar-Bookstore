@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
     <title>샛별문고</title>
 </head>
+<body>
 <div id="header">
     <div class="fixed top-0 z-50 pt-5 w-full bg-white">
         <div class="mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
@@ -22,11 +23,11 @@
                 </div>
                 <!-- 로그인 -->
                 <div class="flex items-center lg:order-2 col-start-3 justify-end">
-                    <a href="#"
+                    <a href="login.jsp"
                        class="text-gray-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-bold  rounded-lg text-md px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
                         로그인
                     </a>
-                    <a href="#"
+                    <a href="create_acc.jsp"
                        class="text-gray-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-bold  rounded-lg text-md px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
                         회원가입
                     </a>
@@ -43,7 +44,7 @@
                         <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
-                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414z"
                                   clip-rule="evenodd"></path>
                         </svg>
                     </button>
@@ -65,16 +66,12 @@
                         <img class="w-40 mr-2" src="../../img/morningstarlogo.png" alt="logo">
                     </a>
                 </div>
-                <form id="loginForm" class="space-y-4 md:space-y-6" action="/admin/login" method="post">
+                <form id="loginForm" class="space-y-4 md:space-y-6" action="/Login" method="post">
                     <div>
-                        <!--              <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">아이디</label>-->
-                        <input type="text" name="id" id="id"
+                        <input type="text" name="userID" id="userID"
                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3 mb-2"
                                required="" placeholder="아이디를 입력해 주세요.">
-                        <!--            </div>-->
-                        <!--            <div>-->
-                        <!--              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">비밀번호</label>-->
-                        <input type="password" name="password" id="password"
+                        <input type="password" name="userPW" id="userPW"
                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                                required="" placeholder="비밀번호를 입력해 주세요.">
                     </div>
@@ -83,6 +80,12 @@
                         로그인
                     </button>
                 </form>
+                <div id="error-message" class="text-red-500 text-sm mt-2">
+                    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+                    <% if (errorMessage != null) { %>
+                        <%= errorMessage %>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
@@ -107,3 +110,6 @@
         </div>
     </footer>
 </div>
+</body>
+</html>
+
