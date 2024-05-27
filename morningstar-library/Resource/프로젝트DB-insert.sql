@@ -23,16 +23,25 @@ insert into inventory
 values ('9788932916811', 45, 5, 16600);
 
  -- 권한에대한 값: 0 회원, 1 관리자
+ -- PW : 123
 insert into user
-values ('hanshin', '123', '김한신', 0, 'hanshin@naver.com', '안산');
+values ('hanshin', '$2a$10$F.prSdYZwB06hJZ8iwSRjeTqDqB9gsNjJHwXf7bd64wzv4jxOVjoi', '김한신', 0, 'hanshin@naver.com', '안산');
+
+-- PW : password
 insert into user
-values ('user123', 'password', '김유저', 0, 'user123@gmail.com', '경기도');
+values ('user123', '$2a$10$xcCSfVeLsZTFiHCfsfGeVOIxnmsUcMJSzwk6Mh.hF1PaQ0Bwv0T9q', '김유저', 0, 'user123@gmail.com', '경기도');
+
+-- PW : db123
 insert into user
-values ('db123', 'db123', '김디비', 0, 'db123@gmail.com', '서울');
+values ('db123', '$2a$10$8YawBoDyG.wPCOwgUrirn.LOrr4jJsKK9hhUHCuDevHFe.20penWW', '김디비', 0, 'db123@gmail.com', '서울');
+
+-- PW : q1w2e3r4
 insert into user
-values ('hello', 'q1w2e3r4', '아무개', 1, 'hello@naver.com', '서울');
+values ('hello', '$2a$10$nXX2gO.ezSzSj5oVVUOHe.DySn0TWD9z.e2fpEl52iUNRz99B5x8y', '아무개', 1, 'hello@naver.com', '서울');
+
+-- PW : asd
 insert into user
-values ('com', 'asd', '이컴공', 1, 'com@hs.ac.kr', '강원도');
+values ('com', '$2a$10$HTelrynqD0bj/YHIHW00GOsauoxA1W1vVEdPJYJ0l3LADpT23yOE2', '이컴공', 1, 'com@hs.ac.kr', '강원도');
 
  -- isValid 에트리뷰트는 어떤 형식이든 주문 처리가 끝나면 0 (주문 취소, 배송 완료 등) 
 insert into sale

@@ -30,7 +30,7 @@ public class DeleteUserServlet extends HttpServlet {
 		String userID = request.getParameter("userID");
 		
 		UserService userService = new UserService();
-		boolean isSuccess = userService.deleteUser(userID);
+		//boolean isSuccess = userService.deleteUser(userID);
 		
 		// TODO 성공시 동작 구현, 실패시 동작 구현 
 	}

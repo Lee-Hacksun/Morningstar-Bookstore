@@ -29,7 +29,7 @@ create table inventory(
 drop table if exists user;
 create table user(
    userID varchar(10),
-   userPW varchar(20),
+   userPW varchar(150),
    name varchar(10),
    managerMod boolean,
    email varchar(50),
