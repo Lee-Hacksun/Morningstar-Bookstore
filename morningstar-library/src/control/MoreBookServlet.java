@@ -1,10 +1,6 @@
- // Book 배열을 응답으로 보내는 sublet
-
 package control;
 
 import java.io.IOException;
-import java.util.Vector;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,20 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import constant.WebConfig;
-import model.Book;
 import service.BookService;
 
 /**
- * Servlet implementation class ViewBookSublet
+ * Servlet implementation class MoreBookServlet
  */
-@WebServlet("/ViewBook")
-public class ViewBookServlet extends HttpServlet {
+@WebServlet("/MoreBook")
+public class MoreBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewBookServlet() {
+    public MoreBookServlet() {
         super();
     }
 
@@ -40,17 +35,11 @@ public class ViewBookServlet extends HttpServlet {
 		if (bookService == null) {
 		    bookService = new BookService();
 		    session.setAttribute("bookService", bookService);
-		}		
-		Vector<Book> books = bookService.getBooks();
-		
-		if(books.size() == 0) {
-			bookService.loadBooks(WebConfig.MAIN_PAGE_BOOK_COUNT);	
 		}
-		
-		request.setAttribute("books", books);
-		request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
-
-
+		    bookService.loadBooks(WebConfig.MAIN_PAGE_BOOK_COUNT);
+		    
+		    request.setAttribute("books", bookService.getBooks());
+			request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
 	}
 
 }
