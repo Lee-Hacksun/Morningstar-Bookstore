@@ -47,13 +47,13 @@ values ('com', '$2a$10$HTelrynqD0bj/YHIHW00GOsauoxA1W1vVEdPJYJ0l3LADpT23yOE2', '
 insert into sale
 values (24042401, 'hanshin', '2024-04-24', '서울특별시 종로구 청와대로 1', 2, 14400, 1);
 insert into sale
-values (24050101, 'hanshin', '2024-05-01', '서울특별시 종로구 청와대로 1', 3, 28800, 1);
+values (24050101, 'hanshin', '2024-05-01', '서울특별시 종로구 청와대로 1', 3, 28800, 2);
 insert into sale
 values (24050301, 'user123', '2024-05-03', '서울특별시 영등포구 의사당대로 1', 1, 7200, 0);
 insert into sale
-values (24050302, 'user123', '2024-05-03', '서울특별시 영등포구 의사당대로 1', 2, 16600, 0);
+values (24050302, 'user123', '2024-05-03', '서울특별시 영등포구 의사당대로 1', 2, 16600, 3);
 insert into sale
-values (24050401, 'db123', '2024-05-04', '서울특별시 서초구 반포대로 201', 1, 7200, 0);
+values (24050401, 'db123', '2024-05-04', '서울특별시 서초구 반포대로 201', 1, 7200, 1);
 
 insert into orderList
 values ('hanshin', 24042401, '9788937462788', 1);

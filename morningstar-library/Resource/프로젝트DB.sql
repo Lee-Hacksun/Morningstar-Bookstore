@@ -45,7 +45,7 @@ create table sale(
    deliveryAddress varchar(150),
    totalBookCount int,
    totalAmount int,
-   isValid boolean,
+   status int,
    primary key(orderID)
 );
 

@@ -105,7 +105,7 @@ public class OrderService {
 			ResultSet isbnRS = null;
 			con = DBConnector.getConnection();
 			
-			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.IS_VALID, "=?;"));			
+			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.STATUS, "=?;"));			
 			pstmt.setBoolean(1, isValid);
 			
 			rs = pstmt.executeQuery();
@@ -125,7 +125,7 @@ public class OrderService {
 						, rs.getInt(OrderAttribute.TOTAL_AMOUNT)
 						, rs.getInt(OrderAttribute.TOTAL_BOOK_COUNT)
 						, isbns
-						, rs.getBoolean(OrderAttribute.IS_VALID))
+						, rs.getInt(OrderAttribute.STATUS))
 						);
 				isbns.clear();
 			}
@@ -152,12 +152,12 @@ public class OrderService {
 			
 			rs = pstmt.executeQuery();			
 			while(rs.next()) {
-				pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderAttribute.IS_VALID, "FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.ORDER_ID, "=?;"));
+				pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderAttribute.STATUS, "FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.ORDER_ID, "=?;"));
 				pstmt.setInt(1, rs.getInt(OrderListAttribute.ORDER_ID));
 				
 				bookRS = pstmt.executeQuery();				
 				if(bookRS.next()) {
-					if(!bookRS.getBoolean(OrderAttribute.IS_VALID)) {
+					if(!bookRS.getBoolean(OrderAttribute.STATUS)) {
 						return true;
 					}
 				}
