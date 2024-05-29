@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,6 +11,14 @@
     <title>샛별문고</title>
 </head>
 <body>
+<%
+    HttpSession session = request.getSession(false);
+    Boolean isManager = (Boolean) session.getAttribute("isManager");
+    if (session == null || isManager == null || !isManager) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <div class="flex flex-col h-screen justify-between">
     <div id="header">
         <header>
@@ -28,7 +36,7 @@
                                      viewBox="0 0 20 20"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
-                                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                           clip-rule="evenodd"
                                     ></path>
                                 </svg>
@@ -70,41 +78,24 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700">
                             <tr>
-                                <th scope="col" class="px-4 py-3">
-                                    <span class="sr-only">Expand/Collapse Row</span>
-                                </th>
-                                <th scope="col" class="px-4 py-3 min-w-20">이름</th>
-                                <th scope="col" class="px-4 py-3 min-w-[10rem]">아이디</th>
+                                <th scope="col" class="px-4 py-3">이름</th>
+                                <th scope="col" class="px-4 py-3">아이디</th>
+                                <th scope="col" class="px-4 py-3">탈퇴</th>
                             </tr>
                             </thead>
-                            <tbody data-accordion="table-column">
-                            <!-- 회원 정보 -->
-                            <tr class="border-b dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition" id="table-column-header-0" data-accordion-target="#table-column-body-0" aria-expanded="false" aria-controls="table-column-body-0">
-                                <td class="p-3 w-4">
-                                    <svg data-accordion-icon="" class="w-6 h-6 shrink-0" fill="currentColor" viewbox="0 0 20 20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </td>
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
-                                    홍길동
-                                </th>
-                                <td class="px-4 py-3">ghdrlfehd</td>
-                            </tr>
-                            <tr class="hidden flex-1 overflow-x-auto w-full" id="table-column-body-0" aria-labelledby="table-column-header-0">
-                                <td class="p-4 border-b" colspan="9">
-                                    <!-- 상세 정보 -->
-                                    <div class="px-10">
-                                        <p class="mb-2 text-base leading-none font-medium text-gray-900">PW : ghdrlfehd11</p>
-                                        <p class="mb-2 text-base leading-none font-medium text-gray-900">주소 : 서울특별시 종로구 청와대로 1 </p>
-                                    </div>
-                                    <!-- 탈퇴 버튼 -->
-                                    <div class="flex items-center justify-end space-x-3 mt-4">
-                                        <button type="button" class="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                            탈퇴
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <tbody>
+                            <c:forEach var="user" items="${userList}">
+                                <tr class="border-b dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">
+                                    <td class="px-4 py-3">${user.name}</td>
+                                    <td class="px-4 py-3">${user.userID}</td>
+                                    <td class="px-4 py-3">
+                                        <form action="DeleteUser" method="post" onsubmit="return confirm('정말로 탈퇴시키겠습니까?');">
+                                            <input type="hidden" name="userID" value="${user.userID}">
+                                            <button type="submit" class="py-2 px-3 text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">탈퇴</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -116,15 +107,9 @@
         <footer class="w-full mx-auto border-t border-slate-900/5 bg-white">
             <div class="flex flex-row justify-between mx-auto max-w-[1300px] px-10">
                 <div class="float-left mt-10 mb-10">
-                    <p class="text-gray-500 text-sm font-bold mb-2">
-                        한신대학교
-                    </p>
-                    <p class="text-gray-500 text-sm font-normal mb-2">
-                        6조 | 이승은 이학선 전태준 정민구 정규민
-                    </p>
-                    <p class="text-gray-500 text-sm font-normal">
-                        Copyright ⓒ 6조
-                    </p>
+                    <p class="text-gray-500 text-sm font-bold mb-2">한신대학교</p>
+                    <p class="text-gray-500 text-sm font-normal mb-2">6조 | 이승은 이학선 전태준 정민구 정규민</p>
+                    <p class="text-gray-500 text-sm font-normal">Copyright ⓒ 6조</p>
                 </div>
                 <div class="content-center justify-end">
                     <img src="https://www.hs.ac.kr/sites/testPub/images/logo.jpg">
@@ -132,5 +117,6 @@
             </div>
         </footer>
     </div>
+</div>
 </body>
 </html>

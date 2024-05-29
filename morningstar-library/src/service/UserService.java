@@ -39,7 +39,6 @@ public class UserService {
             System.err.println("Database error in UserService: " + ex.getMessage());
 
         } finally {
-            try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
             try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
             try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
         }
@@ -65,6 +64,55 @@ public class UserService {
 
         } finally {
             try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+        }
+        return false;
+    }
+
+    public User getUserByID(String userID) {
+        try {
+            con = DBConnector.getConnection();
+            pstmt = con.prepareStatement("SELECT * FROM " + UserAttribute.TABLE_NAME + " WHERE " + UserAttribute.USER_ID + "=?;");
+            pstmt.setString(1, userID);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                    rs.getString(UserAttribute.USER_ID),
+                    rs.getString(UserAttribute.USER_PW),
+                    rs.getString(UserAttribute.NAME),
+                    rs.getString(UserAttribute.DELIVERY_ADDRESS),
+                    rs.getString(UserAttribute.EMAIL),
+                    rs.getBoolean(UserAttribute.MANAGER_MODE)
+                );
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Database error in UserService: " + ex.getMessage());
+
+        } finally {
+            try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+        }
+        return null;
+    }
+
+    public boolean deleteUser(String userID) {
+        try {
+            con = DBConnector.getConnection();
+            pstmt = con.prepareStatement("DELETE FROM " + UserAttribute.TABLE_NAME + " WHERE " + UserAttribute.USER_ID + "=?;");
+            
+            pstmt.setString(1, userID);
+            
+            int isSuccess = pstmt.executeUpdate();
+            return isSuccess > 0;
+            
+        } catch (SQLException ex) {
+            System.err.println("Database error in UserService: " + ex.getMessage());
+            
+        } finally {
             try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
             try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
         }
