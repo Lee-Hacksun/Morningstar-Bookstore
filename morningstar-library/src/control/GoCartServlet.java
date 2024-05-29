@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Cart;
 import service.CartService;
@@ -29,11 +30,11 @@ public class GoCartServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String userID = request.getParameter("userID");
+		
+		HttpSession session = request.getSession();
+		String userID = (String) session.getAttribute("userID");
 		
 		CartService cartService = new CartService();
-		//Cart cart = cartService.getCart(userID);
-		//test
 		Cart cart = cartService.getCart(userID);
 		
 		if(cart.getTotalBookCount() == 0) {

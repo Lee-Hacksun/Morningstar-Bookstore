@@ -16,8 +16,18 @@ public class CartService {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null; 
-	
+	 
 	public boolean addItem(String userID, String ISBN, int bookCount) {
+		Cart cart = getCart(userID);
+		
+		for(Pair<Book, Integer, Integer> book : cart.getBooks()) {
+			if(book.getFirst().getIsbn().equals(ISBN)) {
+				System.out.println(book.getFirst().getIsbn() + ":" + ISBN);
+				updateCount(userID, ISBN, book.getSecond() + bookCount);
+				return true;
+			}
+		}
+		
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", CartAttribute.TABLE_NAME, "values (?, ?, ?);"));
