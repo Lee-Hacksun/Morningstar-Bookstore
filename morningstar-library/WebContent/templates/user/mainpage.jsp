@@ -182,16 +182,16 @@
 				<nav class="bg-white w-full z-20 py-10">
 					<div class="items-center justify-center hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
 						<ul class="grid grid-cols-4 gap-4 p-4 md:p-0 mt-4 font-bold text-xl border border-gray-100 rounded-lg bg-gray-50 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-							<li class="w-36"><a href="#"
+							<li class="w-36"><a href="ViewBook"
 								class="block font-semibold text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 pb-3 border-b-4 border-gray-200 hover:border-sky-700"
 								aria-current="page">전체</a></li>
-							<li><a href="#"
+							<li><a href="ViewBookCategory?category=국내"
 								class="block font-semibold text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 pb-3 border-b-4 border-gray-200 hover:border-sky-700">국내도서</a>
 							</li>
-							<li><a href="#"
+							<li><a href="ViewBookCategory?category=동양"
 								class="block font-semibold text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 pb-3 border-b-4 border-gray-200 hover:border-sky-700">동양도서</a>
 							</li>
-							<li><a href="#"
+							<li><a href="ViewBookCategory?category=서양"
 								class="block font-semibold text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 pb-3 border-b-4 border-gray-200 hover:border-sky-700">서양도서</a>
 							</li>
 						</ul>
@@ -201,6 +201,7 @@
 					<c:set var="books" value="${requestScope.books}" />
 					<c:import url="booklist.jsp">
 						<c:param name="books" value="${books}" />
+						<c:param name="showmore" value="${showmore}" />
 					</c:import>
 				</div>
 			</div>

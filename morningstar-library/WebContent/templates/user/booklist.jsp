@@ -29,24 +29,26 @@
 			</c:forEach>
 		</div>
 	</div>
-	<button type="button"
-		class="justify-center w-full px-4 text-sky-700 hover:bg-gray-200 border border-sky-700 shadow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-		onClick="MoreBook()">더보기(More)
-	</button>
-		<script>
-			function MoreBook() {
-				var xhr = new XMLHttpRequest();
-				xhr.open("GET", "/MoreBook", true);
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == XMLHttpRequest.DONE) {
-						if (xhr.status == 200) {
-							location.reload();
-						} else {
-							console.error('서버 요청 실패');
+		<c:if test="${true eq requestScope.showmore}">
+        	<button type="button"
+				class="justify-center w-full px-4 text-sky-700 hover:bg-gray-200 border border-sky-700 shadow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+				onClick="MoreBook()">더보기(More)
+			</button>
+			<script>
+				function MoreBook() {
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", "/MoreBook", true);
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == XMLHttpRequest.DONE) {
+							if (xhr.status == 200) {
+								location.reload();
+							} else {
+								console.error('서버 요청 실패');
+							}
 						}
-					}
-				};
-				xhr.send();
-			}
-		</script>
+					};
+					xhr.send();
+				}
+			</script>
+		</c:if>
 </div>

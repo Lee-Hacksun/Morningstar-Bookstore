@@ -1,8 +1,3 @@
-<%@ page import="java.io.*,java.util.*"%>
-<%@ page import="javax.servlet.*"%>
-<%@ page import="javax.servlet.http.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-    RequestDispatcher dispatcher = request.getRequestDispatcher("ViewBook");
-    dispatcher.forward(request, response);
-%>
+<c:redirect url="ViewBook" />
