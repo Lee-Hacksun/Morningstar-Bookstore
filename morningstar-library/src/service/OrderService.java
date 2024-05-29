@@ -24,6 +24,8 @@ public class OrderService {
 	private Vector<Order> orders;
 	
 	public OrderService() {
+		orders = new Vector<Order>();
+		
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement("SELECT MAX(orderID) AS orderID FROM "+ OrderAttribute.TABLE_NAME +";");
@@ -34,6 +36,7 @@ public class OrderService {
 			}
 		} catch (SQLException ex) {
 			System.err.println("Database error in OrderService" + ex.getMessage());
+			
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
@@ -45,15 +48,12 @@ public class OrderService {
 		return orders;
 	}
 
-	// TODO : 배송지 처리에 더 좋은 방법이 있는지 고민
-	// TODO : 테스트 필요
 	public void addOrder(Cart cart, String deliveryAddress, int status) {
 		try {
 			LocalDate currentDate = LocalDate.now();
 			
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", OrderAttribute.TABLE_NAME, "VALUES (?,?,?,?,?,?,?);"));
-			 System.out.println(currentDate + ":" + "");
 			pstmt.setInt(1, orderID); 
 			pstmt.setString(2, cart.getUserID());
 			pstmt.setString(3, currentDate.toString());
@@ -87,32 +87,106 @@ public class OrderService {
 		}
 		orderID++;
 	}
-	public void loadValidOrders() {
+	public void loadOrdersWithStatus(int status) {
 		orders.clear();
-		loadOrders(true);
-	}
-	
-	public void loadInvalidOrders() {
-		orders.clear();
-		loadOrders(false);
+		loadOrders(status);
 	}
 	
 	public void loadAllOrders() {
 		orders.clear();
-		loadOrders(true);
-		loadOrders(false);
+		loadOrders(0); // 배송 취소
+		loadOrders(1); // 배송 준비준
+		loadOrders(2); // 배송중
+		loadOrders(3); // 배송 완료
 	}
 	
-	// TODO : 테스트 필요
-	private void loadOrders(boolean isValid) {		
-		try {
-			Vector<String> isbns = new Vector<String>(); 
+	// TODO : 테스트 필요 
+		public boolean isReviewable(String userID, String isbn) {		
+			try {
+				ResultSet bookRS = null;
+				
+				con = DBConnector.getConnection();
+				pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderListAttribute.ORDER_ID, "FROM", OrderListAttribute.TABLE_NAME, "WHERE", OrderListAttribute.USER_ID, "=? AND", OrderListAttribute.ISBN, "=?;"));
+				pstmt.setString(1, userID);
+				pstmt.setString(2, isbn);
+				
+				rs = pstmt.executeQuery();			
+				while(rs.next()) {
+					pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderAttribute.STATUS, "FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.ORDER_ID, "=?;"));
+					pstmt.setInt(1, rs.getInt(OrderListAttribute.ORDER_ID));
+					
+					bookRS = pstmt.executeQuery();				
+					if(bookRS.next()) {
+						if(bookRS.getInt(OrderAttribute.STATUS) == 3) {
+							return true;
+						}
+					}
+				} 
+				
+				return false;
+			} catch (SQLException ex) {
+				System.err.println("Database error in OrderService" + ex.getMessage());
 			
+			} finally {
+				try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+				try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+				try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+			}
+			return false;
+		}
+		
+		public void loadOrdersWithUserID(String userID) {
+			try {				
+				Vector<String> isbns = new Vector<String>();
+				ResultSet isbnRS = null;
+				
+				con = DBConnector.getConnection();
+				
+				pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.USER_ID, "=?;"));			
+				pstmt.setString(1, userID);
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {				
+					pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderListAttribute.ISBN, "FROM", OrderListAttribute.TABLE_NAME, "WHERE", OrderListAttribute.ORDER_ID, "=?;"));
+					pstmt.setInt(1, rs.getInt(OrderListAttribute.ORDER_ID));
+					
+					isbnRS = pstmt.executeQuery();
+					while(isbnRS.next()) {
+						isbns.add(isbnRS.getString(OrderListAttribute.ISBN));
+					}	
+
+					orders.add(new Order( rs.getInt(OrderAttribute.ORDER_ID)
+							, rs.getString(OrderAttribute.USER_ID)
+							, rs.getString(OrderAttribute.ORDER_DATE)
+							, rs.getString(OrderAttribute.DELIVERY_ADDRESS)
+							, rs.getInt(OrderAttribute.TOTAL_AMOUNT)
+							, rs.getInt(OrderAttribute.TOTAL_BOOK_COUNT)
+							, isbns
+							, rs.getInt(OrderAttribute.STATUS))
+							);
+					isbns.clear();
+				}				
+				
+			} catch (SQLException ex) {
+				System.err.println("Database error in OrderService" + ex.getMessage());
+				
+			} finally {
+				try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+				try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+				try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+			}
+		}
+	
+	// TODO : 테스트 필요
+	private void loadOrders(int status) {		
+		try {
+			Vector<String> isbns = new Vector<String>();
 			ResultSet isbnRS = null;
+			
 			con = DBConnector.getConnection();
 			
 			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.STATUS, "=?;"));			
-			pstmt.setBoolean(1, isValid);
+			pstmt.setInt(1, status);
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {				
@@ -125,7 +199,7 @@ public class OrderService {
 				}
 				
 				orders.add(new Order( rs.getInt(OrderAttribute.ORDER_ID)
-						, rs.getString(OrderAttribute.CUSTOMER_ID)
+						, rs.getString(OrderAttribute.USER_ID)
 						, rs.getString(OrderAttribute.ORDER_DATE)
 						, rs.getString(OrderAttribute.DELIVERY_ADDRESS)
 						, rs.getInt(OrderAttribute.TOTAL_AMOUNT)
@@ -144,40 +218,5 @@ public class OrderService {
 			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
 			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 		}
-	}
-	
-	// TODO : 테스트 필요 
-	public boolean isReviewable(String userID, String isbn) {		
-		try {
-			ResultSet bookRS = null;
-			
-			con = DBConnector.getConnection();
-			pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderListAttribute.ORDER_ID, "FROM", OrderListAttribute.TABLE_NAME, "WHERE", OrderListAttribute.USER_ID, "=? AND", OrderListAttribute.ISBN, "=?;"));
-			pstmt.setString(1, userID);
-			pstmt.setString(2, isbn);
-			
-			rs = pstmt.executeQuery();			
-			while(rs.next()) {
-				pstmt = con.prepareStatement(String.join(" ", "SELECT", OrderAttribute.STATUS, "FROM", OrderAttribute.TABLE_NAME, "WHERE", OrderAttribute.ORDER_ID, "=?;"));
-				pstmt.setInt(1, rs.getInt(OrderListAttribute.ORDER_ID));
-				
-				bookRS = pstmt.executeQuery();				
-				if(bookRS.next()) {
-					if(!bookRS.getBoolean(OrderAttribute.STATUS)) {
-						return true;
-					}
-				}
-			} 
-			
-			return false;
-		} catch (SQLException ex) {
-			System.err.println("Database error in OrderService" + ex.getMessage());
-		
-		} finally {
-			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
-			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
-			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
-		}
-		return false;
 	}
 }

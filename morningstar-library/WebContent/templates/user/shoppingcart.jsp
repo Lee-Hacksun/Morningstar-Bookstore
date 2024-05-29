@@ -73,7 +73,7 @@
 								class="w-full text-left text-base text-gray-900 dark:text-white md:table-fixed">
 								<tbody class="divide-y divide-gray-200 dark:divide-gray-800">
 									<!-- 도서 상품 -->
-									<c:forEach items="#{cart.books}" var="item">
+									<c:forEach items="${cart.books}" var="item">
 										<c:set var="book" value="${item.first}" />
 										<c:set var="count" value="${item.second}" />
 										<c:set var="price" value="${item.third}" />
@@ -158,7 +158,7 @@
 											<td
 												class="p-4 text-end text-base font-bold text-gray-900 dark:text-white">
 												<fmt:formatNumber var="formattedPrice" value='${price}'
-													type='currency' currencyCode='KRW' maxFractionDigits="0" />
+													pattern="#,##0원" />
 												<c:out value="${formattedPrice}" />
 											</td>
 											<!-- 도서 삭제 -->
@@ -221,7 +221,7 @@
 											class="text-base font-medium text-gray-900 dark:text-white">
 											<fmt:formatNumber var="formattedTotal"
 												value='${cart.totalAmount}' type='currency'
-												currencyCode='KRW' maxFractionDigits="0" />
+												pattern="#,##0원" />
 											<c:out value="${formattedTotal}" />
 										</dd>
 									</dl>
@@ -232,7 +232,7 @@
 										<dd
 											class="text-base font-medium text-gray-900 dark:text-white">
 											<fmt:formatNumber var="formattedShipping" value="${3000}"
-												type="currency" currencyCode="KRW" maxFractionDigits="0" />
+												pattern="#,##0원" />
 											<c:out value="${formattedShipping}" />
 										</dd>
 									</dl>
@@ -244,8 +244,7 @@
 										결제금액</dt>
 									<dd class="text-base font-bold text-gray-900 dark:text-white">
 										<fmt:formatNumber var="formattedTotalWithShipping"
-											value="${cart.totalAmount + 3000}" type="currency"
-											currencyCode="KRW" maxFractionDigits="0" />
+											value="${cart.totalAmount + 3000}" pattern="#,##0원" />
 										<c:out value="${formattedTotalWithShipping}" />
 									</dd>
 								</dl>
