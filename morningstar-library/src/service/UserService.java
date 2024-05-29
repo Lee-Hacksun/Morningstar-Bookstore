@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import constant.UserAttribute;
 import utility.PasswordUtil;
@@ -70,4 +72,50 @@ public class UserService {
         }
         return false;
     }
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        try {
+            con = DBConnector.getConnection();
+            pstmt = con.prepareStatement("SELECT * FROM " + UserAttribute.TABLE_NAME);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String userID = rs.getString(UserAttribute.USER_ID);
+                String userPW = rs.getString(UserAttribute.USER_PW);
+                String name = rs.getString(UserAttribute.NAME);
+                boolean managerMode = rs.getBoolean(UserAttribute.MANAGER_MODE);
+                String eMailAddress = rs.getString(UserAttribute.EMAIL);
+                String deliveryAddress = rs.getString(UserAttribute.DELIVERY_ADDRESS);
+
+                User user = new User(userID, userPW, name, deliveryAddress, eMailAddress, managerMode);
+                userList.add(user);
+            }
+        } catch (SQLException ex) {
+            System.err.println("Database error in UserService: " + ex.getMessage());
+        } finally {
+            try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+        }
+        return userList;
+    }
+
+    public boolean deleteUser(String userID) {
+        try {
+            con = DBConnector.getConnection();
+            pstmt = con.prepareStatement("DELETE FROM " + UserAttribute.TABLE_NAME + " WHERE " + UserAttribute.USER_ID + "=?");
+            pstmt.setString(1, userID);
+            int isSuccess = pstmt.executeUpdate();
+            return isSuccess > 0;
+        } catch (SQLException ex) {
+            System.err.println("Database error in UserService: " + ex.getMessage());
+        } finally {
+            try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+        }
+        return false;
+    }
 }
+
+

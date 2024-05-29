@@ -12,10 +12,10 @@ import service.UserService;
 /**
  * Servlet implementation class DeleteUserServlet
  */
-@WebServlet("/DeleteUser")
+@WebServlet("/deleteUser")
 public class DeleteUserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -23,16 +23,20 @@ public class DeleteUserServlet extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userID = request.getParameter("userID");
-		
-		UserService userService = new UserService();
-		//boolean isSuccess = userService.deleteUser(userID);
-		
-		// TODO 성공시 동작 구현, 실패시 동작 구현 
-	}
+    /**
+     * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userID = request.getParameter("userID");
 
+        UserService userService = new UserService();
+        boolean isSuccess = userService.deleteUser(userID);
+
+        if (isSuccess) {
+            response.sendRedirect("userlist");
+        } else {
+            request.setAttribute("errorMessage", "사용자 삭제에 실패했습니다.");
+            request.getRequestDispatcher("/WEB-INF/userlist.jsp").forward(request, response);
+        }
+    }
 }
