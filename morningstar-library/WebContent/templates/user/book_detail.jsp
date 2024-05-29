@@ -1,8 +1,6 @@
 <!-- 
  TODO : 미완성
- - 필요없는 테그 지우기
  - 리뷰 기능 구현
- - 금액 표기 수정  
 -->
 
 
@@ -127,16 +125,38 @@
 									<div>
 										<div class="my-8 space-x-3 flex flex-row">
 											<form>
-												<button type="submit"
+												<button type="button"
+													onClick="AddCart('${sessionScope.userID}', '${book.isbn}', false)"
 													class="w-auto items-center justify-center py-3 px-5 text-md font-semibold text-gray-700 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10">
 													장바구니</button>
 											</form>
 											<form>
-												<button type="submit"
-													onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdHfpmKtlZzhw3u4Rm7NIsjlJWSRtjHFKupMjpzBykWm2PEEw/viewform?usp=sf_link');"
+												<button type="button"
+													onClick="AddCart('${sessionScope.userID}', '${book.isbn}', true)"
 													class="w-auto items-center justify-center rounded-md border border-sky-700 bg-sky-700 px-5 py-3 shadow text-md font-semibold text-white hover:bg-sky-800 focus:outline-none focus:ring-offset-2">
 													바로구매</button>
 											</form>
+											<script>
+											function AddCart(userID, isbn, isRedirect) {
+												var xhr = new XMLHttpRequest();
+												var servletUrl = 'AddCart?isbn=' + isbn + '&isRedirect=' + isRedirect;
+												xhr.open("GET", servletUrl, true);
+												xhr.onreadystatechange = function() {
+													if (xhr.readyState == XMLHttpRequest.DONE) {
+														if (xhr.status == 200) {
+															if(isRedirect == true) {
+																window.location.href = "/GoCart?userID=" + userID;
+															} else {
+																alert("장바구니에서 도서가 추가되었습니다.");
+															}
+														} else {
+															console.error('서버 요청 실패');
+														}
+													}
+												};
+												xhr.send();
+											}
+											</script>
 										</div>
 									</div>
 								</div>

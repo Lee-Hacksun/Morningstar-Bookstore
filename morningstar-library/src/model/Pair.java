@@ -1,7 +1,5 @@
 package model;
 
-import java.text.DecimalFormat;
-
 public class Pair <A, B, C> {
 	private A first;
 	private B second;

@@ -1,6 +1,5 @@
 package model;
 
-import java.text.DecimalFormat;
 import java.util.StringJoiner;
 import java.util.Vector;
 
@@ -17,14 +16,6 @@ public class Cart {
 		this.totalBookCount = totalBookCount;
 		this.totalAmount = totalAmount;
 		
-		//  Deep Copy books
-//		for(Pair<Book, Integer, Integer> book : books) {
-//			Book copiedBook = new Book(book.getFirst());
-//			Integer copiedCount = new Integer(book.getSecond());
-//			Integer copiedAmount = new Integer(book.getThird());
-			
-//			books.add(new Pair<>(copiedBook, copiedCount, copiedAmount));
-//		}
 	}
 	
 	public String toString() {
@@ -41,7 +32,7 @@ public class Cart {
 				.toString();
 	}
 	
-	public String getuserID() {
+	public String getUserID() {
 		return userID;
 	}
 	

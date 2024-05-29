@@ -12,9 +12,9 @@ public class Order {
     private int totalAmount;
     private int totalBookCount;
     private Vector<String> isbns;
-    private boolean isValid;
+    private int status;
 
-    public Order(int orderID, String userID, String orderDate, String deliveryAddress, int totalAmount, int totalBookCount, Vector<String> isbns, boolean isValid) {
+    public Order(int orderID, String userID, String orderDate, String deliveryAddress, int totalAmount, int totalBookCount, Vector<String> isbns, int status) {
         this.orderID = orderID;
         this.userID = userID;
         this.orderDate = orderDate;
@@ -22,7 +22,7 @@ public class Order {
         this.totalAmount = totalAmount;
         this.totalBookCount = totalBookCount;
         this.isbns = isbns;
-        this.isValid = isValid;
+        this.status = status;
     }
 
     public String toString() {
@@ -35,13 +35,13 @@ public class Order {
 
         return new StringJoiner(", ", "OrderID: ", "")
                 .add(Integer.toString(orderID))
-                .add("userID: " + userID)
+                .add("UserID: " + userID)
                 .add("OrderDate: " + orderDate)
                 .add("DeliveryAddress: " + deliveryAddress)
                 .add("TotalAmount: " + Integer.toString(totalAmount))
                 .add("TotalBookCount: " + Integer.toString(totalBookCount))
                 .add("ISBNS: " + sb.toString())
-                .add("isValid: " + isValid)
+                .add("Status: " + status)
                 .toString();
     }
 
@@ -73,7 +73,7 @@ public class Order {
         return isbns;
     }
     
-    public boolean getIsValid() {
-    	return isValid;
+    public int getStatus() {
+    	return status;
     }
 }

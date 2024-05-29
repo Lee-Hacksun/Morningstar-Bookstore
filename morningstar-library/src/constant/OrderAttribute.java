@@ -17,5 +17,5 @@ public class OrderAttribute {
     public static final String DELIVERY_ADDRESS = "deliveryAddress";
     public static final String TOTAL_BOOK_COUNT = "totalBookCount";
     public static final String TOTAL_AMOUNT = "totalAmount";
-    public static final String IS_VALID = "isValid";
+    public static final String STATUS = "status";
 }

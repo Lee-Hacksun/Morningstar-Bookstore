@@ -1,5 +1,3 @@
- // Book 배열을 응답으로 보내는 sublet
-
 package control;
 
 import java.io.IOException;
@@ -12,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import constant.WebConfig;
 import model.Book;
 import service.BookService;
 
 /**
- * Servlet implementation class ViewBookSublet
+ * Servlet implementation class ViewBookCategoryServlet
  */
-@WebServlet("/ViewBook")
-public class ViewBookServlet extends HttpServlet {
+@WebServlet("/ViewBookCategory")
+public class ViewBookCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewBookServlet() {
+    public ViewBookCategoryServlet() {
         super();
     }
 
@@ -34,24 +31,30 @@ public class ViewBookServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Vector<Book> selectedBooks = new Vector<Book>();
+		String category = request.getParameter("category");
+		
 		HttpSession session = request.getSession();
 		BookService bookService = (BookService) session.getAttribute("bookService");
 
 		if (bookService == null) {
 		    bookService = new BookService();
 		    session.setAttribute("bookService", bookService);
-		}		
-		Vector<Book> books = bookService.getBooks();
-		
-		if(books.size() == 0) {
-			bookService.loadBooks(WebConfig.MAIN_PAGE_BOOK_COUNT);	
 		}
 		
-		request.setAttribute("showmore", true);
-		request.setAttribute("books", books);
+		Vector<Book> books = bookService.getBooks();
+		for(Book book : books) {
+			for(String bookCategory : book.getCategory()) {
+				if(bookCategory.contains(category)) {
+					selectedBooks.add(book);
+					break;
+				}
+			}
+		}
+		
+		request.setAttribute("showmore", false);
+		request.setAttribute("books", selectedBooks);
 		request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
-
-
 	}
 
 }

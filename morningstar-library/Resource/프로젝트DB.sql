@@ -29,7 +29,7 @@ create table inventory(
 drop table if exists user;
 create table user(
    userID varchar(10),
-   userPW varchar(20),
+   userPW varchar(150),
    name varchar(10),
    managerMod boolean,
    email varchar(50),
@@ -45,12 +45,13 @@ create table sale(
    deliveryAddress varchar(150),
    totalBookCount int,
    totalAmount int,
-   isValid boolean,
+   status int,
    primary key(orderID)
 );
 
 drop table if exists orderList;
 create table orderList(
+   userID varchar(10),
    orderID int,
    ISBN varchar(15),
    count int
