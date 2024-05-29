@@ -25,11 +25,12 @@ public class OrderService {
 	
 	public OrderService() {
 		try {
+			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement("SELECT MAX(orderID) AS orderID FROM "+ OrderAttribute.TABLE_NAME +";");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				orderID = rs.getInt("orderID");
+				orderID = rs.getInt("orderID") + 1;
 			}
 		} catch (SQLException ex) {
 			System.err.println("Database error in OrderService" + ex.getMessage());
@@ -46,18 +47,20 @@ public class OrderService {
 
 	// TODO : 배송지 처리에 더 좋은 방법이 있는지 고민
 	// TODO : 테스트 필요
-	public void addOrder(Cart cart, String deliveryAddress) {
+	public void addOrder(Cart cart, String deliveryAddress, int status) {
 		try {
 			LocalDate currentDate = LocalDate.now();
 			
 			con = DBConnector.getConnection();
-			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", OrderAttribute.TABLE_NAME, "VALUES (?,?,?,?,?, 1);"));
-			 
+			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", OrderAttribute.TABLE_NAME, "VALUES (?,?,?,?,?,?,?);"));
+			 System.out.println(currentDate + ":" + "");
 			pstmt.setInt(1, orderID); 
 			pstmt.setString(2, cart.getUserID());
 			pstmt.setString(3, currentDate.toString());
 			pstmt.setString(4, deliveryAddress);
-			pstmt.setInt(5, cart.getTotalAmount());
+			pstmt.setInt(5, cart.getTotalBookCount());
+			pstmt.setInt(6, cart.getTotalAmount());
+			pstmt.setInt(7, status);
 			
 			pstmt.executeUpdate();
 			
@@ -71,6 +74,9 @@ public class OrderService {
 				
 				pstmt.executeUpdate();
 			}
+			
+			CartService cartService = new CartService();
+			cartService.deleteCart(cart.getUserID());
 			
 		} catch (SQLException ex) {
 			System.err.println("Database error in OrderService" + ex.getMessage());

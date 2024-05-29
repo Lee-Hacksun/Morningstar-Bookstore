@@ -92,7 +92,7 @@
 												class="sr-only">Choose quantity:</label>
 												<div class="flex items-center">
 													<button type="button" id="decrement-button-1"
-													onClick="UpdateDecrement('${cart.userID}', '${book.isbn}', '${count}')"
+														onClick="UpdateDecrement('${cart.userID}', '${book.isbn}', '${count}')"
 														data-input-counter-decrement="counter-input-1"
 														class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
 														<svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -124,7 +124,7 @@
 														class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
 														placeholder="" value="${count}" required />
 													<button type="button" id="increment-button-1"
-													onClick="UpdateIncrement('${cart.userID}', '${book.isbn}', '${count}')"
+														onClick="UpdateIncrement('${cart.userID}', '${book.isbn}', '${count}')"
 														data-input-counter-increment="counter-input-1"
 														class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
 														<svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -253,10 +253,31 @@
 						</div>
 
 						<div class="mt-6 gap-4 sm:flex sm:items-center sm:justify-center">
-							<a href="#"
+							<a href="ViewBook"
 								class="w-full flex rounded-lg border border-gray-200 bg-white px-5 py-2.5 justify-center text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100">쇼핑
-								계속하기</a> <a href="#"
-								class="mt-4 flex w-full items-center justify-center rounded-lg bg-sky-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-primary-300 sm:mt-0">주문하기</a>
+								계속하기</a>
+							<button type="button"
+								onClick="AddOrder()"
+								class="mt-4 flex w-full items-center justify-center rounded-lg bg-sky-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-primary-300 sm:mt-0">
+								바로구매</button>
+							<script>
+								function AddOrder() {
+									var xhr = new XMLHttpRequest();
+									var servletUrl = 'AddOrder';
+									xhr.open("GET", servletUrl, true);
+									xhr.onreadystatechange = function() {
+										if (xhr.readyState == XMLHttpRequest.DONE) {
+											if (xhr.status == 200) {
+												alert("주문이 정상적으로 처리되었습니다.");
+												window.location.href = "/ViewBook";
+											} else {
+												console.error('서버 요청 실패');
+											}
+										}
+									};
+									xhr.send();
+								}
+								</script>
 						</div>
 					</div>
 				</div>

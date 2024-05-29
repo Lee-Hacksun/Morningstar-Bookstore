@@ -22,7 +22,6 @@ public class CartService {
 		
 		for(Pair<Book, Integer, Integer> book : cart.getBooks()) {
 			if(book.getFirst().getIsbn().equals(ISBN)) {
-				System.out.println(book.getFirst().getIsbn() + ":" + ISBN);
 				updateCount(userID, ISBN, book.getSecond() + bookCount);
 				return true;
 			}
@@ -116,10 +115,27 @@ public class CartService {
 	public void removeBook(String userID, String isbn) {
 		try {
 			con = DBConnector.getConnection();
-			
 			pstmt = con.prepareStatement(String.join(" ", "DELETE FROM", CartAttribute.TABLE_NAME, "WHERE", CartAttribute.USER_ID, "=? AND", CartAttribute.ISBN, "=?;"));
 			pstmt.setString(1, userID);
 			pstmt.setString(2, isbn);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException ex) {
+			System.err.println("Database error in CartService" + ex.getMessage());			
+			
+		} finally {
+			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+		}
+	}
+	
+	public void deleteCart(String userID) {
+		try {
+			con = DBConnector.getConnection();
+			pstmt = con.prepareStatement(String.join(" ", "DELETE FROM", CartAttribute.TABLE_NAME, "WHERE", CartAttribute.USER_ID, "=?;"));
+			pstmt.setString(1, userID);
 			
 			pstmt.executeUpdate();
 			
