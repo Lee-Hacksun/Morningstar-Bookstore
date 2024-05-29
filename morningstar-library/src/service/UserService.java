@@ -39,7 +39,6 @@ public class UserService {
             System.err.println("Database error in UserService: " + ex.getMessage());
 
         } finally {
-            try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
             try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
             try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
         }
@@ -114,7 +113,6 @@ public class UserService {
             System.err.println("Database error in UserService: " + ex.getMessage());
             
         } finally {
-            try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
             try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
             try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
         }
