@@ -13,7 +13,8 @@
 <body>
 <%
     HttpSession session = request.getSession(false);
-    if (session == null || session.getAttribute("isAdmin") == null) {
+    Boolean isManager = (Boolean) session.getAttribute("isManager");
+    if (session == null || isManager == null || !isManager) {
         response.sendRedirect("login.jsp");
         return;
     }
@@ -35,7 +36,7 @@
                                      viewBox="0 0 20 20"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
-                                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                           clip-rule="evenodd"
                                     ></path>
                                 </svg>
@@ -88,7 +89,7 @@
                                     <td class="px-4 py-3">${user.name}</td>
                                     <td class="px-4 py-3">${user.userID}</td>
                                     <td class="px-4 py-3">
-                                        <form action="deleteUser" method="post" onsubmit="return confirm('정말로 탈퇴시키겠습니까?');">
+                                        <form action="DeleteUser" method="post" onsubmit="return confirm('정말로 탈퇴시키겠습니까?');">
                                             <input type="hidden" name="userID" value="${user.userID}">
                                             <button type="submit" class="py-2 px-3 text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">탈퇴</button>
                                         </form>
