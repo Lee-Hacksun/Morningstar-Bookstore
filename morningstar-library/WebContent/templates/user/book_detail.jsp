@@ -95,23 +95,27 @@
 											</form>
 											<script>
 											function AddCart(userID, isbn, isRedirect) {
-												var xhr = new XMLHttpRequest();
-												var servletUrl = 'AddCart?isbn=' + isbn + '&isRedirect=' + isRedirect;
-												xhr.open("GET", servletUrl, true);
-												xhr.onreadystatechange = function() {
-													if (xhr.readyState == XMLHttpRequest.DONE) {
-														if (xhr.status == 200) {
-															if(isRedirect == true) {
-																window.location.href = "/GoCart?userID=" + userID;
+												if(userID == "") {
+													alert("로그인 후 이용 가능한 서비스 입니다.");
+												} else {
+													var xhr = new XMLHttpRequest();
+													var servletUrl = 'AddCart?isbn=' + isbn + '&isRedirect=' + isRedirect;
+													xhr.open("GET", servletUrl, true);
+													xhr.onreadystatechange = function() {
+														if (xhr.readyState == XMLHttpRequest.DONE) {
+															if (xhr.status == 200) {
+																if(isRedirect == true) {
+																	window.location.href = "/GoCart?userID=" + userID;
+																} else {
+																	alert("장바구니에서 도서가 추가되었습니다.");
+																}
 															} else {
-																alert("장바구니에서 도서가 추가되었습니다.");
+																console.error('서버 요청 실패');
 															}
-														} else {
-															console.error('서버 요청 실패');
 														}
-													}
-												};
-												xhr.send();
+													};
+													xhr.send();	
+												}
 											}
 											</script>
 										</div>
