@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             	response.sendRedirect("admin_index.jsp");
             	
             } else {
-            	response.sendRedirect("index.jsp"); // 로그인 성공 시 이동할 페이지	
+            	response.sendRedirect("index.jsp"); 	
             }
         } else {
             request.setAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");

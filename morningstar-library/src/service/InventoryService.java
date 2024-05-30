@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 
+import constant.BookAttribute;
 import constant.InventoryAttribute;
 import database.DBConnector;
 
@@ -51,5 +52,24 @@ public class InventoryService {
 			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 		}
 		return price;
+	}
+
+	public void modifyCost(String isbn, int newPrice) {
+		 try {
+	         con = DBConnector.getConnection();
+	         pstmt = con.prepareStatement(String.join(" ", "UPDATE", InventoryAttribute.TABLE_NAME, "SET", InventoryAttribute.PRICE, "=? WHERE", InventoryAttribute.ISBN, "=?;"));
+	         pstmt.setInt(1, newPrice);
+	         pstmt.setString(2, isbn);
+	         
+	         pstmt.executeUpdate();
+	         
+	      } catch (SQLException ex) {
+	         System.err.println("Database error in BookService" + ex.getMessage()); 
+	         
+	      } finally {
+	    		try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+				try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+				try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+	      }
 	}
 }

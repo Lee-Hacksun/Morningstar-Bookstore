@@ -22,7 +22,7 @@
                             </a>
 		 </div>
 		 <div>
-		 <a href="/" >
+		 <a href="/ViewBook" >
                                 <img class="book_managementImg" src="../../assets/icons/book_management.png" alt="도서관리">
                                 <span class=" text-2xl font-semibold whitespace-nowrap">도서 관리</span>
                             </a>

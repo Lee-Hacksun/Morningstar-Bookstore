@@ -54,7 +54,14 @@ public class ViewBookCategoryServlet extends HttpServlet {
 		
 		request.setAttribute("showmore", false);
 		request.setAttribute("books", selectedBooks);
-		request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
+		
+		Object isManager = session.getAttribute("isManager");
+		if((isManager != null) && ((int)isManager == 1)) {
+			request.getRequestDispatcher("/bookpage.jsp").forward(request, response);
+			
+		} else {
+			request.getRequestDispatcher("/mainpage.jsp").forward(request, response);	
+		}
 	}
 
 }
