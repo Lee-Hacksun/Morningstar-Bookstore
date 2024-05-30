@@ -69,8 +69,10 @@
                         <p class="text-xl font-semibold py-3">도서 사진</p>
                         <div class="border border-gray-300 shadow p-5 rounded-lg">
                             <div class="space-y-3">
-                                <label for="book_img">현재 파일 : ${book.bookImg}</label>
-                                <input class="block w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="book_img" type="file" name="book_img" accept="image/*">
+                                <label for="book_img">현재 이미지 :
+                                	<img src="${book.bookImageURL}" alt="Web Image" /> 
+								</label>
+                                <input class="block w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="book_img" type="text" name="book_img" accept="image/*">
                             </div>
                         </div>
                     </div>
