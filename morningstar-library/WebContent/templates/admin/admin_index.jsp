@@ -16,7 +16,7 @@
     <c:import url="header.jsp" />
      <div class="max-w-[1300px] mx-auto admin_options">
 		 <div>
-		 <a href="/" >
+		 <a href="order_page.jsp" >
                                 <img class="book_orderImg" src="../../assets/icons/book_order.png" alt="발주">
                                 <span class=" text-2xl font-semibold whitespace-nowrap">발주</span>
                             </a>

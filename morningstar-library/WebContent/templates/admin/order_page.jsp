@@ -22,13 +22,13 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         발주
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form class="space-y-4 md:space-y-6" action="/AddManagerOrder" method="POST">
                         <div>
                             <label for="name"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이름</label>
-                            <input type="text" name="name" id="name"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ISBN</label>
+                            <input type="text" name="isbn" id="isbn"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                   placeholder="이름" required="">
+                                   placeholder="ISBN" required="">
                         </div>
                         <div>
                             <label for="author"

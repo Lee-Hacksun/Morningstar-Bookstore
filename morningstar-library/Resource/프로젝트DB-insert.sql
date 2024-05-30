@@ -105,25 +105,13 @@ insert into orderHistory
 values (24050401, '2024-05-04');
 
 insert into managerOrder
-values ('com', 24042801, '2024-04-28');
+values ('com', 24042801, '2024-04-28', '9788964620786', 5);
 insert into managerOrder
-values ('com', 24020202, '2024-02-02');
+values ('com', 24020202, '2024-02-02', '9788982734014', 14);
 insert into managerOrder
-values ('hello', 24040202, '2024-04-02');
+values ('hello', 24040202, '2024-04-02', '9788937460449', 30);
 insert into managerOrder
-values ('hello', 24040301, '2024-04-03');
+values ('hello', 24040301, '2024-04-03', '9788971904398', 20);
 insert into managerOrder
-values ('hello', 240401501, '2024-04-15');
+values ('hello', 240401501, '2024-04-15', '9788982734014', 3);
 
-insert into bookOfManagerOrder
-values (24042801, '9788964620786');
-insert into bookOfManagerOrder
-values (24042802, '9788982734014');
-insert into bookOfManagerOrder
-values (24020202, '9788937460449');
-insert into bookOfManagerOrder
-values (24040202, '9788971904398');
-insert into bookOfManagerOrder
-values (24040301, '9788937460449');
-insert into bookOfManagerOrder
-values (240401501, '9788982734014');
