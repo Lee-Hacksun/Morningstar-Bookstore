@@ -100,4 +100,26 @@ public class UserService {
     	
     	return null;
     }
+    
+    public boolean isManager(String userID) {
+    	try {
+			con = DBConnector.getConnection();
+			pstmt = con.prepareStatement(String.join(" ", "SELECT", UserAttribute.MANAGER_MODE, "FROM", UserAttribute.TABLE_NAME, "WHERE", UserAttribute.USER_ID, "=?;"));
+			pstmt.setString(1, userID);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getBoolean(UserAttribute.MANAGER_MODE);
+			}
+			
+		} catch (SQLException ex) {
+            System.err.println("Database error in UserService: " + ex.getMessage());
+
+        } finally {
+            try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+            try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+        }
+    	return false;
+    }
 }
