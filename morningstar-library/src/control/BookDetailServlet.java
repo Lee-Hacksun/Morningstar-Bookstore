@@ -6,9 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.BookService;
 import service.InventoryService;
+import service.ReviewService;
 
 /**
  * Servlet implementation class BookInfoServlet
@@ -28,14 +30,21 @@ public class BookDetailServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		String userID = (String) session.getAttribute("userID");
 		String isbn = request.getParameter("isbn");
 		
 		BookService bookService = new BookService();
+		ReviewService reviewService = new ReviewService();
+		reviewService.loadReviews(isbn);
 		InventoryService inventoryService = new InventoryService();
 		inventoryService.getPrice(isbn);
 		
 		request.setAttribute("book", bookService.loadBook(isbn));
 		request.setAttribute("price", inventoryService.getPrice());
+		request.setAttribute("reviews", reviewService.getReviews());
+		request.setAttribute("userID", userID);
 		request.getRequestDispatcher("/book_detail.jsp").forward(request, response);
 	}
 

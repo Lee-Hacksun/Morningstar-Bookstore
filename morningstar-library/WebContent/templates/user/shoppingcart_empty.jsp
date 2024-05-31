@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     <div class="mt-6 gap-4 sm:flex sm:items-center sm:justify-center">
-                        <a href="#"
+                        <a href="/ViewBook"
                            class="mt-4 flex w-full items-center justify-center rounded-lg bg-sky-700 px-5 py-2.5 text-lg font-semibold text-white hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-primary-300 sm:mt-0">쇼핑하러가기</a>
                     </div>
                 </div>

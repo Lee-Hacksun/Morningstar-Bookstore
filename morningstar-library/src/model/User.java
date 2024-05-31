@@ -53,7 +53,7 @@ public class User {
 		return eMailAddress;
 	}
 	
-	public Boolean isManager() {
+	public Boolean getManagerMode() {
 		return managerMode;
 	}
 }

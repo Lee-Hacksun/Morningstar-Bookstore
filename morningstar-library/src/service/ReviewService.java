@@ -21,19 +21,19 @@ public class ReviewService {
 		reviews = new Vector<Review>();
 	}
 	
-	// TODO : 테스트 필요
 	public void addReview(Review review) {
 		try {
 			con = DBConnector.getConnection();
-			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", ReviewAttribute.TABLE_NAME, "VALUES (?,?,?,?);"));		
+			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", ReviewAttribute.TABLE_NAME, "VALUES (?,?,?,?,?);"));		
 			pstmt.setString(1, review.getuserID());
 			pstmt.setString(2, review.getIsbn());
 			pstmt.setInt(3, review.getRating());
 			pstmt.setString(4, review.getContents());
+			pstmt.setString(5, review.getDate());
 			
 			pstmt.executeUpdate();			
 		} catch (SQLException ex) {
-			System.err.println("Database error in OrderService" + ex.getMessage());
+			System.err.println("Database error in ReviewService" + ex.getMessage());
 		
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
@@ -42,7 +42,6 @@ public class ReviewService {
 		}
 	}
 	
-	// TODO : 테스트 필요
 	public void updateReview(String userID, String isbn, String contents) {
 		try {
 			con = DBConnector.getConnection();
@@ -53,7 +52,7 @@ public class ReviewService {
 			
 			pstmt.executeUpdate();			
 		} catch (SQLException ex) {
-			System.err.println("Database error in OrderService" + ex.getMessage());
+			System.err.println("Database error in ReviewService" + ex.getMessage());
 		
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
@@ -62,8 +61,8 @@ public class ReviewService {
 		}
 	}
 	
-	// TODO : 테스트 필요
 	public void loadReviews(String isbn) {		
+		reviews.clear();
 		try {
 			con = DBConnector.getConnection();
 			pstmt = con.prepareStatement(String.join(" ", "SELECT * FROM", ReviewAttribute.TABLE_NAME, "WHERE", ReviewAttribute.ISBN, "=?;"));
@@ -76,11 +75,30 @@ public class ReviewService {
 						, rs.getString(ReviewAttribute.ISBN)
 						, rs.getString(ReviewAttribute.CONTENT)
 						, rs.getInt(ReviewAttribute.RATING)
+						, rs.getString(ReviewAttribute.DATE)
 						));
 			}
 			
 		} catch (SQLException ex) {
-			System.err.println("Database error in OrderService" + ex.getMessage());
+			System.err.println("Database error in ReviewService" + ex.getMessage());
+		
+		} finally {
+			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+			try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+		}
+	}
+	
+	public void deleteReview(String userID, String isbn) {
+		try {
+			con = DBConnector.getConnection();
+			pstmt = con.prepareStatement(String.join(" ", "DELETE FROM", ReviewAttribute.TABLE_NAME, "WHERE", ReviewAttribute.USER_ID, "=? AND", ReviewAttribute.ISBN, "=?;"));		
+			pstmt.setString(1, userID);
+			pstmt.setString(2, isbn);
+			
+			pstmt.executeUpdate();			
+		} catch (SQLException ex) {
+			System.err.println("Database error in ReviewService" + ex.getMessage());
 		
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }

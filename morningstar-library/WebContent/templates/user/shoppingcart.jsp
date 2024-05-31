@@ -216,20 +216,23 @@
 								바로구매</button>
 							<script>
 								function AddOrder() {
-									var xhr = new XMLHttpRequest();
-									var servletUrl = 'AddOrder';
-									xhr.open("GET", servletUrl, true);
-									xhr.onreadystatechange = function() {
-										if (xhr.readyState == XMLHttpRequest.DONE) {
-											if (xhr.status == 200) {
-												alert("주문이 정상적으로 처리되었습니다.");
-												window.location.href = "/ViewBook";
-											} else {
-												console.error('서버 요청 실패');
+									var result = confirm("배송은 취소하실 수 없습니다. 구매하시겠습니까?");
+									if (result) {
+										var xhr = new XMLHttpRequest();
+										var servletUrl = 'AddOrder';
+										xhr.open("GET", servletUrl, true);
+										xhr.onreadystatechange = function() {
+											if (xhr.readyState == XMLHttpRequest.DONE) {
+												if (xhr.status == 200) {
+													alert("주문이 정상적으로 처리되었습니다.");
+													window.location.href = "/ViewBook";
+												} else {
+													console.error('서버 요청 실패');
+												}
 											}
-										}
-									};
-									xhr.send();
+										};
+										xhr.send();	
+									}
 								}
 								</script>
 						</div>

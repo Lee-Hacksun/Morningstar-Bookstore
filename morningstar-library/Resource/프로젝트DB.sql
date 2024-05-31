@@ -63,6 +63,7 @@ create table review(
    ISBN varchar(15),
    rating int,
    content varchar(250),
+   reviewDate date,
    primary key(userID, ISBN)
 );
 

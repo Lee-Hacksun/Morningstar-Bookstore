@@ -59,7 +59,7 @@ public class OrderService {
 			pstmt.setString(3, currentDate.toString());
 			pstmt.setString(4, deliveryAddress);
 			pstmt.setInt(5, cart.getTotalBookCount());
-			pstmt.setInt(6, cart.getTotalAmount());
+			pstmt.setInt(6, cart.getTotalAmount() + 3000);
 			pstmt.setInt(7, status);
 			
 			pstmt.executeUpdate();
@@ -117,7 +117,7 @@ public class OrderService {
 					
 					bookRS = pstmt.executeQuery();				
 					if(bookRS.next()) {
-						if(bookRS.getInt(OrderAttribute.STATUS) == 3) {
+						if(bookRS.getInt(OrderAttribute.STATUS) == 1) { //테스트중, 끝나면 값 3으로 변경
 							return true;
 						}
 					}

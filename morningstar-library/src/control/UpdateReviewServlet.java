@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.UserService;
+import service.ReviewService;
 
 /**
- * Servlet implementation class DeleteUserServlet
+ * Servlet implementation class UpdateReviewServlet
  */
-@WebServlet("/DeleteUser")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/UpdateReview")
+public class UpdateReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserServlet() {
+    public UpdateReviewServlet() {
         super();
     }
 
@@ -27,12 +27,17 @@ public class DeleteUserServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 request.setCharacterEncoding("UTF-8");
+		
+		String contents = request.getParameter("editedContent");
+		String isbn = request.getParameter("isbn");
 		String userID = request.getParameter("userID");
 		
-		UserService userService = new UserService();
-		userService.deleteUser(userID);
+		ReviewService reviewService = new ReviewService();
+		reviewService.updateReview(userID, isbn, contents);
 		
-		response.sendRedirect("/GoUserList");
+		request.setAttribute("isbn", isbn);
+		request.getRequestDispatcher("/BookDetail").forward(request, response);	
 	}
 
 }

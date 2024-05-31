@@ -28,7 +28,7 @@
                             </a>
 		 </div>
 		 <div>
-		 <a href="/" >
+		 <a href="/GoUserList" >
                                 <img class="user_managementImg" src="../../assets/icons/user_management.png" alt="회원관리">
                                 <span class=" text-2xl font-semibold whitespace-nowrap">회원 관리</span>
                             </a>
