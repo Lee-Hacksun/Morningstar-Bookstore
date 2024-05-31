@@ -6,20 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import service.UserService;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DeleteUserServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/DeleteUser")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/Logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserServlet() {
+    public LogoutServlet() {
         super();
     }
 
@@ -27,12 +26,10 @@ public class DeleteUserServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userID = request.getParameter("userID");
+		HttpSession session = request.getSession();
+		session.invalidate();
 		
-		UserService userService = new UserService();
-		userService.deleteUser(userID);
-		
-		response.sendRedirect("/GoUserList");
+		response.sendRedirect("index.jsp");
 	}
 
 }

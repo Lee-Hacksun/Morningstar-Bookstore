@@ -21,17 +21,11 @@ public class Order {
         this.deliveryAddress = deliveryAddress;
         this.totalAmount = totalAmount;
         this.totalBookCount = totalBookCount;
-        this.isbns = isbns;
+        this.isbns = new Vector<>(isbns);
         this.status = status;
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(isbns.elementAt(0));
-
-        for (int i = 1; i < isbns.size(); i++) {
-            sb.append(", ").append(isbns.elementAt(i));
-        }
 
         return new StringJoiner(", ", "OrderID: ", "")
                 .add(Integer.toString(orderID))
@@ -40,7 +34,7 @@ public class Order {
                 .add("DeliveryAddress: " + deliveryAddress)
                 .add("TotalAmount: " + Integer.toString(totalAmount))
                 .add("TotalBookCount: " + Integer.toString(totalBookCount))
-                .add("ISBNS: " + sb.toString())
+                .add("ISBNS: " + String.join(", ", isbns))
                 .add("Status: " + status)
                 .toString();
     }

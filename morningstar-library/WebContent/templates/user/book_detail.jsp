@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <html lang="ko" class="h-full scroll-smooth">
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1280">
@@ -20,50 +21,7 @@
 </head>
 <body>
 	<div class="flex flex-col h-screen justify-between">
-		<div id="header" class="relative">
-			<div class="fixed top-0 z-50 pt-5 w-full bg-white">
-				<div class="mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-					<div class="relative z-50 grid grid-cols-3 gap-4">
-						<!-- logo -->
-						<div class="flex items-center md:gap-x-12">
-							<a aria-label="Home" href="/"> <img class="w-40 mr-2"
-								src="../../assets/icons/morningstarlogo.png" alt="logo">
-							</a>
-						</div>
-						<!-- 로그인 -->
-						<div class="flex items-center lg:order-2 col-start-3 justify-end">
-							<a href="#"
-								class="text-gray-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-bold  rounded-lg text-md px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-								로그인 </a> <a href="#"
-								class="text-gray-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-bold  rounded-lg text-md px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-								회원가입 </a>
-							<button data-collapse-toggle="mobile-menu-2" type="button"
-								class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-								aria-controls="mobile-menu-2" aria-expanded="false">
-								<span class="sr-only">Open main menu</span>
-								<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-									xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-										d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-										clip-rule="evenodd"></path>
-                            </svg>
-								<svg class="hidden w-6 h-6" fill="currentColor"
-									viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-										d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-										clip-rule="evenodd"></path>
-                            </svg>
-							</button>
-						</div>
-					</div>
-				</div>
-				<div class="mx-auto mt-5 w-full text-center">
-					<div
-						class="flex flex-row justify-between border-b-2 border-gray-200">
-					</div>
-				</div>
-			</div>
-		</div>
+		<c:import url="header.jsp" />
 		<div id="content" class="mb-auto h-auto pt-28">
 			<div class="bg-white">
 				<div class="py-6 mx-auto w-full">
@@ -138,23 +96,27 @@
 											</form>
 											<script>
 											function AddCart(userID, isbn, isRedirect) {
-												var xhr = new XMLHttpRequest();
-												var servletUrl = 'AddCart?isbn=' + isbn + '&isRedirect=' + isRedirect;
-												xhr.open("GET", servletUrl, true);
-												xhr.onreadystatechange = function() {
-													if (xhr.readyState == XMLHttpRequest.DONE) {
-														if (xhr.status == 200) {
-															if(isRedirect == true) {
-																window.location.href = "/GoCart?userID=" + userID;
+												if(userID == "") {
+													alert("로그인 후 이용 가능한 서비스 입니다.");
+												} else {
+													var xhr = new XMLHttpRequest();
+													var servletUrl = 'AddCart?isbn=' + isbn + '&isRedirect=' + isRedirect;
+													xhr.open("GET", servletUrl, true);
+													xhr.onreadystatechange = function() {
+														if (xhr.readyState == XMLHttpRequest.DONE) {
+															if (xhr.status == 200) {
+																if(isRedirect == true) {
+																	window.location.href = "/GoCart?userID=" + userID;
+																} else {
+																	alert("장바구니에서 도서가 추가되었습니다.");
+																}
 															} else {
-																alert("장바구니에서 도서가 추가되었습니다.");
+																console.error('서버 요청 실패');
 															}
-														} else {
-															console.error('서버 요청 실패');
 														}
-													}
-												};
-												xhr.send();
+													};
+													xhr.send();	
+												}
 											}
 											</script>
 										</div>
@@ -236,85 +198,138 @@
 								<div class="flex justify-between items-center mb-6">
 									<h2
 										class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">리뷰
-										(1)</h2>
+									</h2>
 								</div>
-								<form class="mb-6">
-									<div
-										class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+								<c:if test="${userID != null}">
+								<form class="mb-6" action="AddReview" method="post">
+									<div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+										<input type="hidden" name="userID" value="${userID}">
+    									<input type="hidden" name="isbn" value="${book.isbn}">
 										<label for="comment" class="sr-only">Your comment</label>
-										<textarea id="comment" rows="6"
+										<textarea id="comment" name="comment" rows="6"
 											class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
 											placeholder="리뷰를 작성해 주세요..." required></textarea>
-									</div>
-									<button type="submit"
-										class="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800">
-										리뷰작성</button>
+										<div id="ratingStars" class="flex">
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(1)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(2)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(3)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(4)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(5)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(6)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(7)"><i class="fas fa-star"></i></button>
+               								<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(8)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(9)"><i class="fas fa-star"></i></button>
+                							<button type="button" class="text-gray-400 text-2xl mr-1" onclick="setRating(10)"><i class="fas fa-star"></i></button>
+            							</div>
+            							<input type="hidden" id="rating" name="rating">
+										</div>
+											<button type="submit"
+												class="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800">
+												리뷰작성
+											</button>
 								</form>
-								<article
-									class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
-									<footer class="flex justify-between items-center mb-2">
-										<div class="flex items-center">
-											<p
-												class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
-												구매자</p>
-											<p class="text-sm text-gray-600 dark:text-gray-400">
-												<time pubdate datetime="2022-02-08"
-													title="February 8th, 2022">2024.05.12 </time>
-											</p>
-										</div>
-										<button id="dropdownComment1Button"
-											data-dropdown-toggle="dropdownComment1"
-											class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
-											type="button">
-											<svg class="w-4 h-4" aria-hidden="true"
-												xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-												viewBox="0 0 16 3">
-                                            <path
-													d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                                        </svg>
-											<span class="sr-only">Comment settings</span>
-										</button>
-										<!-- Dropdown menu -->
-										<div id="dropdownComment1"
-											class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-											<ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-												aria-labelledby="dropdownMenuIconHorizontalButton">
-												<li><a href="#"
-													class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">수정</a>
-												</li>
-												<li><a href="#"
-													class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">삭제</a>
-												</li>
-												<li><a href="#"
-													class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">신고</a>
-												</li>
-											</ul>
-										</div>
-									</footer>
-									<p class="text-gray-500 dark:text-gray-400">좋아요</p>
-								</article>
-							</div>
-						</section>
+								</c:if>
+								<script>
+        							function setRating(rating) {
+            							document.getElementById("rating").value = rating;
+            							highlightStars(rating); 
+        							}
+
+							        function highlightStars(rating) {
+            							const stars = document.querySelectorAll("#ratingStars button");
+            							stars.forEach((star, index) => {
+                							if (index < rating) {
+                    							star.classList.add("text-yellow-400");
+                							} else {
+	                    						star.classList.remove("text-yellow-400");
+    	            						}
+        	    						});
+        							}
+								
+							        document.getElementById("ratingForm").addEventListener("submit", function(event) {
+            						event.preventDefault(); 
+
+						            var rating = document.getElementById("rating").value;
+							        });
+    							</script>
+								<c:forEach items="${reviews}" var="review" varStatus="status">
+    								<article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+        								<footer class="flex justify-between items-center mb-2">
+            								<div class="flex items-center">
+                								<p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">${review.userID}</p>
+                								<p class="mr-3 text-sm text-gray-600 dark:text-gray-400">
+                    								<time pubdate datetime="${review.date}" title="${review.date}">${review.date}</time>
+                								</p>
+                								<div class="flex items-center">
+                    								<span class="text-yellow-500">
+                        								<c:forEach var="i" begin="1" end="${review.rating / 2}">
+                            								<i class="fas fa-star"></i>
+                        								</c:forEach>
+                        								<c:if test="${review.rating % 2 != 0}">
+                            								<i class="fas fa-star-half-alt"></i>
+                        								</c:if>
+                        								<c:forEach var="i" begin="1" end="${5 - (review.rating / 2) - (review.rating % 2 != 0 ? 1 : 0)}">
+                            								<i class="far fa-star"></i>
+                        								</c:forEach>
+                    								</span>
+                    								<span class="text-gray-600 dark:text-gray-400 ml-2">(${review.rating})</span>
+                								</div>
+            								</div>
+            								<button id="dropdownCommentButton${status.index}"
+                								data-dropdown-toggle="dropdownComment${status.index}"
+                								class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
+                								type="button">
+                							<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                    							<path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                							</svg>
+                							<span class="sr-only">Comment settings</span>
+            								</button>
+            								<!-- Dropdown menu -->
+            								<div id="dropdownComment${status.index}"
+                								class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                								<ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCommentButton${status.index}">
+                								<c:if test="${userID == review.userID}">
+                    							<li>
+                        							<a onclick="showEditForm()" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+    													수정
+													</a>
+                        							<script>
+    													function showEditForm() {
+        												document.getElementById('editFormContainer').style.display = 'block';
+    													}
+													</script>
+                    							</li>
+                    							<li>
+                        							<a href="/DeleteReview?userID=${userID}&isbn=${review.isbn}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick="return alert('리뷰가 삭제되었습니다.');">삭제</a>
+                    							</li>
+                    							</c:if>
+                    							<c:if test="${userID != review.userID}">
+                    							<li>
+                        							<a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onclick="return alert('악플이 성공적으로 신고되었습니다. 신속히 검토하겠습니다.');">신고</a>
+                    							</li>
+                    							</c:if>
+                								</ul>
+            								</div>
+        								</footer>
+        							<p class="text-gray-500 dark:text-gray-400">${review.contents}</p>
+        							<div id="editFormContainer" style="display: none;">
+    									<form id="editForm" action="UpdateReview" method="post">
+    										<input type="hidden" name="userID" value="${userID}">
+    										<input type="hidden" name="isbn" value="${review.isbn}">
+        									<textarea name="editedContent" id="editedContent" rows="4" class="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md resize-none focus:outline-none focus:border-blue-500" placeholder="내용을 입력하세요"></textarea>
+        									<button type="submit" class="mt-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" onClick="return alert('리뷰가 수정되었습니다.');">
+            								수정 완료
+        									</button>
+    									</form>
+									</div>
+    							</article>
+						</c:forEach>
 					</div>
+					</section>
 				</div>
 			</div>
 		</div>
-		<div id="footer">
-			<footer class="w-full mx-auto border-t border-slate-900/5 bg-white">
-				<div
-					class="flex flex-row justify-between mx-auto max-w-[1300px] px-10">
-					<div class="float-left mt-10 mb-10">
-						<p class="text-gray-500 text-sm font-bold mb-2">한신대학교</p>
-						<p class="text-gray-500 text-sm font-normal mb-2">6조 | 이승은 이학선
-							전태준 정민구 정규민</p>
-						<p class="text-gray-500 text-sm font-normal">Copyright ⓒ 6조</p>
-					</div>
-					<div class="content-center justify-end">
-						<img src="https://www.hs.ac.kr/sites/testPub/images/logo.jpg">
-					</div>
-				</div>
-			</footer>
-		</div>
+		<c:import url="header.jsp" />
 	</div>
 </body>
 </html>

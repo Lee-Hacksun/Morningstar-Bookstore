@@ -63,6 +63,7 @@ create table review(
    ISBN varchar(15),
    rating int,
    content varchar(250),
+   reviewDate date,
    primary key(userID, ISBN)
 );
 
@@ -86,12 +87,7 @@ create table managerOrder(
    userID varchar(10),
    managerOrderID int,
    orderDate date,
-   primary key (managerOrderID)
-);
-
-drop table if exists bookOfManagerOrder;
-create table bookOfManagerOrder(
-   managerOrderID int,
-   ISBN varchar(15),
+   isbn varchar(15),
+   bookCount int,
    primary key (managerOrderID)
 );

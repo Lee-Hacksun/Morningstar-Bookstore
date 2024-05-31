@@ -33,7 +33,15 @@ public class LoginServlet extends HttpServlet {
         if (isSuccess) {
             HttpSession session = request.getSession();
             session.setAttribute("userID", userID);
-            response.sendRedirect("index.jsp"); // 로그인 성공 시 이동할 페이지
+            
+            boolean isManager = userService.isManager(userID);
+            if(isManager) {
+            	session.setAttribute("isManager", 1);
+            	response.sendRedirect("admin_index.jsp");
+            	
+            } else {
+            	response.sendRedirect("index.jsp"); 	
+            }
         } else {
             request.setAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
             request.getRequestDispatcher("login.jsp").forward(request, response);

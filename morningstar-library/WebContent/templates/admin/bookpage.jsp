@@ -156,7 +156,7 @@
 				</nav>
 				<div>
 					<c:set var="books" value="${requestScope.books}" />
-					<c:import url="booklist.jsp">
+					<c:import url="admin_booklist.jsp">
 						<c:param name="books" value="${books}" />
 						<c:param name="showmore" value="${showmore}" />
 					</c:import>

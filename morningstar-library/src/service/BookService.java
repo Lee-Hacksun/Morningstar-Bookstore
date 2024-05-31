@@ -30,6 +30,13 @@ public class BookService {
 		return books;
 	}
 	
+	public void reloadBooks() {
+		books.clear();
+		int count = cursor;
+		cursor = 0;
+		loadBooks(count);
+	}
+	
 	// 두번의 loadBook호출 사이에 insert Book이 일어나면 버그의 가능성 있음 
 	public void loadBooks(int count) {
 		try {			
@@ -126,4 +133,39 @@ public class BookService {
 	      }
 	      return null;
 	   }
+
+	public void modifyBook(String isbn, String name, String img, String author, String publisher, String detail) {
+		 try {
+			 System.out.println(0);
+	         con = DBConnector.getConnection();
+	         if(img.equals("")) {
+	        	 System.out.println(1);
+	        	 pstmt = con.prepareStatement(String.join(" ", "UPDATE", BookAttribute.TABLE_NAME, "SET", BookAttribute.BOOK_NAME, "=?,", BookAttribute.AUTHOR, "=?,", BookAttribute.PUBLISHER, "=?,", BookAttribute.DESCRIPTION, "=? WHERE", BookAttribute.ISBN, "=?;"));
+	        	 pstmt.setString(1, name);
+	        	 pstmt.setString(2, author);
+	        	 pstmt.setString(3, publisher);
+	        	 pstmt.setString(4, detail);
+	        	 pstmt.setString(5, isbn);
+	        	 
+	         } else {
+	        	 System.out.println(2);
+	        	 pstmt = con.prepareStatement(String.join(" ", "UPDATE", BookAttribute.TABLE_NAME, "SET", BookAttribute.BOOK_NAME, "=?,", BookAttribute.AUTHOR, "=?,", BookAttribute.PUBLISHER, "=?,", BookAttribute.DESCRIPTION, "=?,", BookAttribute.BOOK_IMG_URL, "=? WHERE", BookAttribute.ISBN, "=?;"));
+		         pstmt.setString(1, name);
+		         pstmt.setString(2, author);
+		         pstmt.setString(3, publisher);
+		         pstmt.setString(4, detail);
+		         pstmt.setString(5, img);
+		         pstmt.setString(6, isbn);	 
+	         }
+	         pstmt.executeUpdate();
+	         
+	      } catch (SQLException ex) {
+	         System.err.println("Database error in BookService" + ex.getMessage()); 
+	         
+	      } finally {
+	         try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
+	         try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
+	         try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
+	      }
+	}
 }
