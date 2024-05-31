@@ -12,7 +12,7 @@ public class CategoryFlags {
 	public static final int SELF_DEVELOPEMENT_VALUE = 1 << 6;
 	public static final int LITERATURE_VALUE = 1 << 7; 
 	
-	public static final String[] FLAG_VALUES = {"국내", "동양", "서양", "인문", "과학", "철힉", "자기개발", "문학"}; // 2 + 64 = 66
+	public static final String[] FLAG_VALUES = {"국내", "동양", "서양", "인문", "과학", "철학", "자기개발", "문학"}; // 2 + 64 = 66
 	
 	private int code;
 	
