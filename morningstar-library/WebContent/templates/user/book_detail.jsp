@@ -290,9 +290,9 @@
                 								<ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCommentButton${status.index}">
                 								<c:if test="${userID == review.userID}">
                     							<li>
-                        							<button type="button" onclick="showEditForm()" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        							<a onclick="showEditForm()" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
     													수정
-													</button>
+													</a>
                         							<script>
     													function showEditForm() {
         												document.getElementById('editFormContainer').style.display = 'block';
