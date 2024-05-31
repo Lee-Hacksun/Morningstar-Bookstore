@@ -87,6 +87,74 @@ insert into inventory
 values ('9788932916804', 50, 10, 16600);
 insert into inventory
 values ('9788932916811', 45, 5, 16600);
+insert into inventory
+values ('9791139707144', 50, 15, 19900);
+insert into inventory
+values ('9780525433446', 110, 35, 16900);
+insert into inventory
+values ('9791197883958', 35, 10, 20000);
+insert into inventory
+values ('9791160051384', 60, 10, 16000);
+insert into inventory
+values ('9784274224393', 65, 15, 39590);
+insert into inventory
+values ('9788937834790', 70, 25, 15000);
+insert into inventory
+values ('9791171712144', 60, 5, 14800);
+insert into inventory
+values ('9791168341982', 90, 25, 18000);
+insert into inventory
+values ('9780061120084', 70, 20, 34250);
+insert into inventory
+values ('9780451524935', 80, 30, 12900);
+insert into inventory
+values ('9788937461491', 80, 10, 10000);
+insert into inventory
+values ('9791140702589', 85, 20, 17800);
+insert into inventory
+values ('9788954450393', 90, 15, 16800);
+insert into inventory
+values ('9791169954983', 75, 10, 30000);
+insert into inventory
+values ('9788978125314', 95, 15, 25000);
+insert into inventory
+values ('9791156006510', 60, 5, 35000);
+insert into inventory
+values ('9791195795529', 40, 5, 18900);
+insert into inventory
+values ('9791161340098', 55, 10, 23000);
+insert into inventory
+values ('9788986836967', 60, 15, 16500);
+insert into inventory
+values ('9788925575032', 100, 20, 19000);
+insert into inventory
+values ('9791193984024', 120, 35, 18000);
+insert into inventory
+values ('9791191131727', 100, 30, 20000);
+insert into inventory
+values ('9788998441012', 50, 5, 13000);
+insert into inventory
+values ('9791130649672', 60, 10, 17000);
+insert into inventory
+values ('9791130646381', 55, 20, 13800);
+insert into inventory
+values ('9791138483049', 65, 15, 18800);
+insert into inventory
+values ('9791165075064', 80, 20, 17800);
+insert into inventory
+values ('9791167901484', 70, 15, 14500);
+insert into inventory
+values ('9791198695444', 80, 20, 25000);
+insert into inventory
+values ('9788972918295', 75, 15, 16800);
+insert into inventory
+values ('9791171711994', 55, 5, 22000);
+insert into inventory
+values ('9791166891496', 50, 10, 17800);
+insert into inventory
+values ('9791192300818', 60, 5, 15300);
+
+
 
  -- 권한에대한 값: 0 회원, 1 관리자
  -- PW : 123
