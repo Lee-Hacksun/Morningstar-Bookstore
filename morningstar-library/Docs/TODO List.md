@@ -4,27 +4,16 @@
 
 ### 데이터베이스
 - [ ] 데이터베이스 테이블 추가
-- [ ] OrderService 작성
-- [ ] ManagerOrderService 작성
-
-
 
 ### 인터페이스
 - [ ] 고객 페이지
-  - [ ] 도서 구매 관련 인터페이스
 - [ ] RegistUserServlet 적용 (회원가입 기능)
-- [ ] ViewBookSuvlet 적용 (메인페이지 책 정보 게시)
 
 ### 기능
-- [ ] 도서 구매 기능
-- [ ] 도서 발주 기능
-- [ ] 로그인 기능
   - [ ] LoginServlet 작성
     - [ ] 로그인 성공시 페이지 전환
     - [ ] 로그인 실패시 페이지 전환
 - [ ] 도서 항목별 정렬 기능
-- [ ] 도서 카테고리 필터링
-- [ ] 도서 검색 기능
 ### 기타
 - [ ] 팀 소개 페이지
 
@@ -32,11 +21,13 @@
 
 ### 이학선
 - [x] 데이터 베이스 연결
-- [ ] 데이터베이스 상수 클래스 작성
+- [x] 데이터베이스 상수 클래스 작성
   - [x] DBConfig.java
   - [x] UserAttribute.java
   - [x] BookAttribute.java
   - [x] WebConfig.java
+- [x] OrderService 작성
+- [x] ManagerOrderService 작성
 - [x] CategoryFlags 작성
 - [x] 모델 클래스 작성
 - [x] RegisterService 작성 
@@ -53,8 +44,19 @@
     - [x] 장바구니에 요소 추가
     - [x] 장바구니 로드
 - [x] 메인페이지 DB연결
+- [x] ViewBookSuvlet 적용 (메인페이지 책 정보 게시)
 - [x] 장바구니 DB연결
 - [x] 도서 상세페이지 DB연결
+- [x] 도서 구매 기능
+- [x] 도서 발주 기능
+- [x] 로그인 기능
+- [x] 도서 카테고리 필터링
+- [x] 도서 검색 기능
+- [x] 유저관리 기능
+- [x] 도서 리뷰 기능
+- [x] 도서 정보 수정 기능
+- [x] 마이페이지 구현
+- [x] 주문기능 구현
 
 ### 이승은
 - [ ] 고객 페이지
