@@ -21,7 +21,7 @@
 				<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 					<div>
 						<a aria-label="Home" href="/"> <img class="w-40 mr-2"
-							src="../../img/morningstarlogo.png" alt="logo">
+							src="../../assets/icons/morningstarlogo.png" alt="logo">
 						</a>
 					</div>
 					<form id="loginForm" class="space-y-4 md:space-y-6" action="/Login"
