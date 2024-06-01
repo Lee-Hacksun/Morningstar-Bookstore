@@ -137,7 +137,7 @@
 									</li>
 									<li class="p-4 hover:bg-gray-100 rounded-lg"><a
 										href="#BookReview" class="text-gray-600 font-base text-md">리뷰
-											<span class="num">(1)</span>
+											<span class="num"></span>
 									</a></li>
 								</ul>
 							</div>
