@@ -39,7 +39,6 @@ public class AddManagerOrderServlet extends HttpServlet {
 	     String date = request.getParameter("date");
 	        
 	     ManagerOrderService managerOrderService = new ManagerOrderService();
-	     System.out.println(userID + author + date + isbn + amount);
 	     managerOrderService.addManagerOrder(userID, author, date, isbn, amount);
 	     
 	     response.sendRedirect("admin_index.jsp");

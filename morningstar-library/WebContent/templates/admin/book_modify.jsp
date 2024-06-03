@@ -42,96 +42,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 카테고리 -->
-<!--                     <div> -->
-<!--                         <p class="text-xl font-semibold py-3">카테고리</p> -->
-<!--                     </div> -->
-<!--                     <div class="flex flex-row mb-4"> -->
-<!--                         <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown" -->
-<!--                                 class="bg-white border border-gray-300 shadow hover:bg-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button"> -->
-<!--                             카테고리 선택 -->
-<!--                             <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"> -->
-<!--                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/> -->
-<!--                         </svg> -->
-<!--                         </button> -->
-<!--                         Dropdown menu -->
-<!--                         <div id="multi-dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"> -->
-<!--                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="multiLevelDropdownButton"> -->
-<!--                                 <li> -->
-<!--                                     <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> -->
-<!--                                         국내도서 -->
-<!--                                         <svg class="w-2.5 h-2.5 ms-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"> -->
-<!--                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/> -->
-<!--                                         </svg> -->
-<!--                                     </button> -->
-<!--                                     <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"> -->
-<!--                                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton"> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">소설</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">인문</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">경제/경영</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">기술/공학</a> -->
-<!--                                             </li> -->
-<!--                                         </ul> -->
-<!--                                     </div> -->
-<!--                                 </li> -->
-<!--                                 <li> -->
-<!--                                     <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> -->
-<!--                                         동양도서 -->
-<!--                                         <svg class="w-2.5 h-2.5 ms-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"> -->
-<!--                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/> -->
-<!--                                         </svg> -->
-<!--                                     </button> -->
-<!--                                     <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"> -->
-<!--                                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton"> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">소설</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">인문</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">경제/경영</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">기술/공학</a> -->
-<!--                                             </li> -->
-<!--                                         </ul> -->
-<!--                                     </div> -->
-<!--                                 </li> -->
-<!--                                 <li> -->
-<!--                                     <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> -->
-<!--                                         서양도서 -->
-<!--                                         <svg class="w-2.5 h-2.5 ms-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"> -->
-<!--                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/> -->
-<!--                                         </svg> -->
-<!--                                     </button> -->
-<!--                                     <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"> -->
-<!--                                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton"> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">소설</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">인문</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">경제/경영</a> -->
-<!--                                             </li> -->
-<!--                                             <li> -->
-<!--                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">기술/공학</a> -->
-<!--                                             </li> -->
-<!--                                         </ul> -->
-<!--                                     </div> -->
-<!--                                 </li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                     </div> -->
                     <!-- 저자 -->
                     <div class="mb-6">
                         <p class="text-xl font-semibold py-3">저자</p>
@@ -156,9 +66,6 @@
                 <!-- 게시글 목록으로 돌아가기 -->
                 <div class="flex justify-end px-5 mb-20 space-x-3">
                     <input type="submit" value="수정" class="text-gray-600 inline-flex border border-gray-300 shadow bg-white focus:ring-4 focus:outline-none focus:ring-emerald-700 font-medium rounded-lg text-sm px-5 py-2.5">
-                    <button type="submit" class="text-gray-600 inline-flex border border-gray-300 shadow bg-white focus:ring-4 focus:outline-none focus:ring-emerald-700 font-medium rounded-lg text-sm px-5 py-2.5">
-                        삭제
-                    </button>
                 </div>
             </form>
         </div>

@@ -117,7 +117,7 @@ public class OrderService {
 					
 					bookRS = pstmt.executeQuery();				
 					if(bookRS.next()) {
-						if(bookRS.getInt(OrderAttribute.STATUS) == 1) { //테스트중, 끝나면 값 3으로 변경
+						if(bookRS.getInt(OrderAttribute.STATUS) == 3) { 
 							return true;
 						}
 					}

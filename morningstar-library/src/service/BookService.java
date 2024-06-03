@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import constant.BookAttribute;
+import constant.UserAttribute;
 import database.DBConnector;
 import model.Book;
 
@@ -37,16 +38,26 @@ public class BookService {
 		loadBooks(count);
 	}
 	
+	public int getCursor() {
+		return cursor;
+	}
+	
 	// 두번의 loadBook호출 사이에 insert Book이 일어나면 버그의 가능성 있음 
 	public void loadBooks(int count) {
+		PreparedStatement loadPstmt = null;
 		try {			
+			
 			con = DBConnector.getConnection();			
-			pstmt = con.prepareStatement("SELECT * FROM " + BookAttribute.TABLE_NAME + " LIMIT " + cursor + ", " + count + ";");
-			rs = pstmt.executeQuery();
+			loadPstmt = con.prepareStatement("SELECT * FROM " + BookAttribute.TABLE_NAME + " LIMIT ?, ?;");
+			loadPstmt.setInt(1, cursor);
+			loadPstmt.setInt(2, count);
+			
+			rs = loadPstmt.executeQuery();
 			
 			cursor += count;
 						
 			while(rs.next()) {
+				System.out.println(rs.getString(BookAttribute.ISBN));
 				books.add(new Book(
 						rs.getString(BookAttribute.ISBN)
 						, rs.getString(BookAttribute.BOOK_NAME)
@@ -59,7 +70,7 @@ public class BookService {
 						, rs.getInt(BookAttribute.CATEGORY)));
 			}
 		} catch (SQLException ex) {
-			System.err.println("Database error in BookService" + ex.getMessage()); 
+			System.err.println("Database error in BookService>loadBooks" + ex.getMessage()); 
 			
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
@@ -89,7 +100,7 @@ public class BookService {
 			}			
 			
 		} catch (SQLException ex) {
-			System.err.println("Database error in BookService" + ex.getMessage()); 
+			System.err.println("Database error in BookService>loadBook" + ex.getMessage()); 
 			
 		} finally {
 			try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
@@ -124,7 +135,7 @@ public class BookService {
 	         }
 	         
 	      } catch (SQLException ex) {
-	         System.err.println("Database error in BookService" + ex.getMessage()); 
+	         System.err.println("Database error in BookService>searchBook" + ex.getMessage()); 
 	         
 	      } finally {
 	         try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
@@ -136,10 +147,8 @@ public class BookService {
 
 	public void modifyBook(String isbn, String name, String img, String author, String publisher, String detail) {
 		 try {
-			 System.out.println(0);
 	         con = DBConnector.getConnection();
 	         if(img.equals("")) {
-	        	 System.out.println(1);
 	        	 pstmt = con.prepareStatement(String.join(" ", "UPDATE", BookAttribute.TABLE_NAME, "SET", BookAttribute.BOOK_NAME, "=?,", BookAttribute.AUTHOR, "=?,", BookAttribute.PUBLISHER, "=?,", BookAttribute.DESCRIPTION, "=? WHERE", BookAttribute.ISBN, "=?;"));
 	        	 pstmt.setString(1, name);
 	        	 pstmt.setString(2, author);
@@ -148,7 +157,6 @@ public class BookService {
 	        	 pstmt.setString(5, isbn);
 	        	 
 	         } else {
-	        	 System.out.println(2);
 	        	 pstmt = con.prepareStatement(String.join(" ", "UPDATE", BookAttribute.TABLE_NAME, "SET", BookAttribute.BOOK_NAME, "=?,", BookAttribute.AUTHOR, "=?,", BookAttribute.PUBLISHER, "=?,", BookAttribute.DESCRIPTION, "=?,", BookAttribute.BOOK_IMG_URL, "=? WHERE", BookAttribute.ISBN, "=?;"));
 		         pstmt.setString(1, name);
 		         pstmt.setString(2, author);
@@ -158,14 +166,14 @@ public class BookService {
 		         pstmt.setString(6, isbn);	 
 	         }
 	         pstmt.executeUpdate();
-	         
+	         reloadBooks();
 	      } catch (SQLException ex) {
-	         System.err.println("Database error in BookService" + ex.getMessage()); 
+	         System.err.println("Database error in BookService>modifyBook" + ex.getMessage()); 
 	         
 	      } finally {
 	         try { if (rs != null) rs.close(); } catch (SQLException e) { /* ignored */ }
 	         try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { /* ignored */ }
 	         try { if (con != null) con.close(); } catch (SQLException e) { /* ignored */ }
 	      }
-	}
+	}	
 }

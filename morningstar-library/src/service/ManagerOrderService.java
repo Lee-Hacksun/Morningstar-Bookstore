@@ -40,13 +40,12 @@ public class ManagerOrderService {
 	public void addManagerOrder(String userID, String author, String date, String isbn, int count) {
 		try {
 			con = DBConnector.getConnection();
-			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", ManagerOrderAttribute.TABLE_NAME, "VALUES (?,?,?,?,?,?);"));
+			pstmt = con.prepareStatement(String.join(" ", "INSERT INTO", ManagerOrderAttribute.TABLE_NAME, "VALUES (?,?,?,?,?);"));
 			pstmt.setString(1, userID);
 			pstmt.setInt(2, managerOrderID);
-			pstmt.setString(3, author);
-			pstmt.setString(4, date);
-			pstmt.setString(5, isbn);
-			pstmt.setInt(6, count);
+			pstmt.setString(3, date);
+			pstmt.setString(4, isbn);
+			pstmt.setInt(5, count);
 			
 			pstmt.executeUpdate();
 		} catch (SQLException ex) {

@@ -179,7 +179,7 @@ values ('root', '$2a$10$MS85viMf/PIHECZ1iNHtve9ed973KukSTqUIz8mjaHXLN2ye5aqCW', 
 
  -- isValid 에트리뷰트는 어떤 형식이든 주문 처리가 끝나면 0 (주문 취소, 배송 완료 등) 
 insert into sale
-values (24042401, 'hanshin', '2024-04-24', '서울특별시 종로구 청와대로 1', 2, 14400, 1);
+values (24042401, 'hanshin', '2024-04-24', '서울특별시 종로구 청와대로 1', 2, 14400, 3);
 insert into sale
 values (24050101, 'hanshin', '2024-05-01', '서울특별시 종로구 청와대로 1', 3, 28800, 2);
 insert into sale
@@ -194,7 +194,7 @@ values ('hanshin', 24042401, '9788937462788', 1);
 insert into orderList
 values ('hanshin', 24042401, '9788937460449', 1);
 insert into orderList
-values ('hanshin', 24050101, '9788937462788', 1);
+values ('hanshin', 24050101, '9788971904398', 1);
 insert into orderList
 values ('hanshin', 24050101, '9788971904398', 2);
 insert into orderList
@@ -207,6 +207,8 @@ values ('db123', 24050401, '9788937460449', 1);
  -- rating은 0부터 10 사이의 정수값 
 insert into review
 values ('hanshin', '9788937462788', 8, '티비에서 많이 언급되길래 구입했는데 아주 재미있어요', '2023-03-12');
+insert into review
+values ('user123', '9788937462788', 9, '책 읽는 걸 좋아하는 초5 입니다. 내용이 조금 어렵기는 한데 재미있긴 하더라고요. 한 번 읽고 땡! 보다는 여러 번 읽는 걸 추천드립니다!', '2024-04-01');
 insert into review
 values ('hanshin', '9788937460449', 10, '과거로 돌아간다면 난 어느 시점으로 돌아가고 싶을까 철부지 20대 시절 그 빛나던 시절에 난 무엇을 했던가 생각없이 방황하던 그 시간들이 이제와 돌이켜보면 너무 안타깝다. 지금 이 시간도 언젠가 또 그렇게 느껴지겠지...', '2013-03-22');
 insert into review

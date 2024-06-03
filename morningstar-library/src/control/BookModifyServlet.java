@@ -48,7 +48,6 @@ public class BookModifyServlet extends HttpServlet {
         String detail = request.getParameter("bookdetail");
         
         bookService.modifyBook(isbn, name, img, author, publisher, detail);
-        bookService.reloadBooks();
         
         InventoryService inventoryService = new InventoryService();
         inventoryService.modifyCost(isbn, price);

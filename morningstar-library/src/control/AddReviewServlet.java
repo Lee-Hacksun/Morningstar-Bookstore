@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Review;
+import service.BookService;
+import service.InventoryService;
 import service.OrderService;
 import service.ReviewService;
 
@@ -33,9 +35,10 @@ public class AddReviewServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		
-		String userID = request.getParameter("userID");
+		String userID = (String) session.getAttribute("userID");		
 		String isbn = request.getParameter("isbn");
 		String contents = request.getParameter("comment");
 		int rating = Integer.parseInt(request.getParameter("rating"));
@@ -50,9 +53,20 @@ public class AddReviewServlet extends HttpServlet {
 					, rating
 					, LocalDate.now().toString()));
 		}
-			
 		
+		BookService bookService = new BookService();
+		
+		ReviewService reviewService = new ReviewService();		
+		reviewService.loadReviews(isbn);
+		
+		InventoryService inventoryService = new InventoryService();
+		inventoryService.getPrice(isbn);
+				
+		request.setAttribute("reviews", reviewService.getReviews());
+		request.setAttribute("userID", userID);
 		request.setAttribute("isbn", isbn);
+		request.setAttribute("book", bookService.loadBook(isbn));
+		request.setAttribute("price", inventoryService.getPrice());
 		request.getRequestDispatcher("/BookDetail").forward(request, response);	
 	}
 

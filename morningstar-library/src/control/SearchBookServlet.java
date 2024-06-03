@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import model.Book;
 import service.BookService;
 import service.InventoryService;
+import service.ReviewService;
 
 /**
  * Servlet implementation class SearchBookServlet
@@ -47,6 +48,10 @@ public class SearchBookServlet extends HttpServlet {
 			request.setAttribute("books", bookService.getBooks());
 			request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
 		} else {
+			ReviewService reviewService = new ReviewService();
+			reviewService.loadReviews(findBook.getIsbn());
+			
+			request.setAttribute("reviews", reviewService.getReviews());
 			request.setAttribute("book", findBook);
 			request.setAttribute("price", inventoryService.getPrice(findBook.getIsbn()));
 			request.getRequestDispatcher("/book_detail.jsp").forward(request, response);
